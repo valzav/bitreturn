@@ -1,0 +1,17 @@
+<% title "Sign in" %>
+<div class="container">
+  <div class="row">
+    <div class="span4"></div>
+    <div class="span4">
+      <%= simple_form_for @user_session, url: user_session_path do |f| %>
+        <%= f.input :email, placeholder: 'Email', required: false %>
+        <%= f.input :password, placeholder: 'Password', required: false %>
+        <%= f.input :remember_me, as: :boolean, inline_label: 'remember me', label: false %>
+        <%= f.submit 'Sign In', class: 'btn btn-primary form-button' %>
+      <% end %>
+      <div>Don't have an account? <%= link_to('Create account', new_user_path) %></div>
+      <div><%= link_to('Lost your password?', login_path) %></div>
+    </div>
+    <div class="span4"></div>
+  </div>
+</div>

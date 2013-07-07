@@ -1,0 +1,18 @@
+<% title 'New Account' %>
+<div class="container">
+  <div class="row">
+    <div class="span4"></div>
+    <div class="span4">
+      <%= simple_form_for @user do |f| %>
+        <%= f.input :email, label: '', placeholder: 'Email' %>
+        <%= f.input :password, placeholder: 'Password' %>
+        <%= f.input :password_confirmation, placeholder: 'Confirm your password' %>
+        <%= f.submit 'Create Account', class: 'btn btn-primary form-button' %>
+      <% end %>
+      <div>
+        <%= link_to('Sign in', login_path) %> if you already have an account
+      </div>
+    </div>
+    <div class="span4"></div>
+  </div>
+</div>

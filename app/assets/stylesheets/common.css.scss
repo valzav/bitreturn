@@ -1,0 +1,64 @@
+//@import "bourbon";
+//
+//@mixin border-radius($r) {
+//  @include prefixer(border-radius, $r, spec);
+//}
+//
+//.btn {
+//  @include border-radius(3px);
+//}
+//
+//.btn-large {
+//  @include border-radius(4px);
+//}
+//
+//.btn i {
+//  position: relative;
+//  top: 2px;
+//}
+
+// flat-ui overrides
+.navbar .nav > li > a {
+  padding: 15px 20px 13px 0;
+}
+
+.navbar .brand {
+  padding: 9px 28px 12px 32px;
+}
+
+label.checkbox, .radio {
+  padding-left: 20px;
+}
+
+// end flat-ui overrides
+
+.clear-right { clear: right;}
+.clear-left { clear: left;}
+.clear-both { clear: both;}
+
+i.space-right {
+  padding-right: 2px;
+}
+
+.center-content {
+  text-align: center;
+  > a {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+a.disabled {
+  pointer-events: none;
+}
+
+.form-button {
+  margin-top: 10px;
+  width: 206px !important;
+}
+
+.block {
+  hr {
+    margin: 4px 0;
+  }
+}
