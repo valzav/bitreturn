@@ -1,24 +1,36 @@
+require Rails.root.join('lib/bitcoin_difficulty_model.rb').to_s
+
 class WelcomeController < ApplicationController
   respond_to :html, :js
 
   def index
   end
 
-  def test_widget
+  def blocks
+    model = BitcoinDifficultyModel.new
+    blocks_data = Bitcoin::Block.select('block_date, block_time, ghps, difficulty').where("block_time>'2013-01-01'").order('id')
+    blocks_data.each do |b|
+      model.add_block(b.block_date, b.block_time, b.difficulty, b.ghps)
+    end
+    model.forecast(100, 40.0)
+    data_hashes = []
+    data_difficulty = []
+    data_f_hashes = []
+    data_f_difficulty = []
+    model.blocks.each do |b|
+      js_time = b.time.to_i*1000
+      if b.ghps
+        data_hashes << [js_time, b.ghps]
+        data_difficulty << [js_time, b.difficulty]
+      elsif b.f_ghps
+        data_f_hashes << [js_time, b.f_ghps]
+        data_f_difficulty << [js_time, b.f_difficulty]
+      end
+    end
+    gon.data_hashes = data_hashes
+    gon.data_difficulty = data_difficulty
+    gon.data_f_hashes = data_f_hashes
+    gon.data_f_difficulty = data_f_difficulty
   end
-
-  def generate_address
-    user = User.find_by_api_key(params[:api_key])
-    addr = Address.create(user: user, page_url: params[:page_url], page_title: params[:page_title])
-    render json: { address: addr.bitcoin_address }, callback: params[:callback]
-  end
-
-  def widget_data
-    amount = view_context.mf IncomingTransaction.get_page_amount(params[:page_url])
-    #amount = view_context.mf Money.new(123456)
-    res = %{<div id="btmw_data" class="btmw-data-box" style="width:#{amount.length.to_f/2.0+0.5}em;">#{amount}</div>}
-    render json: { data: res }, callback: params[:callback]
-  end
-
 
 end

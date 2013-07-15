@@ -4,3 +4,31 @@
 TODO:
 
 
+
+
+
+# http://jsxgraph.uni-bayreuth.de/wiki/index.php/Time_series_forecasting:_double_exponential_smoothing
+#  updateDataArray = ->
+#    dataX = []
+#    dataY = []
+#    t = undefined
+#    alphalocal = 0.2
+#    gammalocal = 0.6
+#    S = data[0] # Set the inital values for S and b
+#    b = data[1] - data[0]
+#    Snew = undefined
+#    dataX[0] = 0
+#    dataY[0] = S
+#    t = 1
+#    while t < data.length
+#      Snew = alphalocal * data[t] + (1 - alphalocal) * (S + b)
+#      b = gammalocal * (Snew - S) + (1 - gammalocal) * b
+#      dataX[t] = t
+#      dataY[t] = Snew
+#      S = Snew
+#      data_avg[t] = [t,Snew]
+#      t++
+#    console.log data_avg
+#
+#  updateDataArray()
+  #console.log gon.data_hashes

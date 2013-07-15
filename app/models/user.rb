@@ -1,5 +1,3 @@
-require File.expand_path('../../../lib/bitcoin_wallet.rb', __FILE__)
-
 class User < ActiveRecord::Base
   has_many :accounts, :dependent => :destroy
 

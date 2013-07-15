@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 1) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -35,6 +35,17 @@ ActiveRecord::Schema.define(:version => 0) do
   add_index "accounts", ["email"], :name => "index_accounts_on_email"
   add_index "accounts", ["uid"], :name => "index_accounts_on_uid"
   add_index "accounts", ["user_id", "platform_id", "fbapp_id"], :name => "index_accounts_on_user_id_and_platform_id_and_fbapp_id"
+
+  create_table "bitcoin_blocks", :force => true do |t|
+    t.integer  "block_number"
+    t.date     "block_date"
+    t.datetime "block_time"
+    t.string   "target"
+    t.float    "difficulty"
+    t.float    "ghps"
+  end
+
+  add_index "bitcoin_blocks", ["block_number"], :name => "index_bitcoin_blocks_on_block_number"
 
   create_table "platforms", :force => true do |t|
     t.string "name"

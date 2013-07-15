@@ -8,6 +8,7 @@
   <%= csrf_meta_tags %>
   <%= @og.facebook_og_metas.html_safe if @og %>
   <%= @og.twitter_card_metas.html_safe if @og %>
+  <%= include_gon %>
   <%= javascript_include_tag "webapp/app" %>
   <%= stylesheet_link_tag "webapp/app", :media => "all" %>
   <%= stylesheet_link_tag "vendor/font-awesome", :media => "all" %>

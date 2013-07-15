@@ -31,3 +31,8 @@ gem 'money-rails'
 gem 'simple_form'
 gem 'active_model_serializers'
 gem 'daemons-rails'
+gem 'curb'
+gem 'chartkick'
+
+gem 'holt_winters', git: 'https://github.com/cmdrkeene/holt_winters.git'
+gem 'tealeaves'

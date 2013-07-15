@@ -5,11 +5,6 @@ Monetizer::Application.routes.draw do
   match '/logout' => 'user_sessions#destroy', :as => :logout
   match '/login' => 'user_sessions#new', :as => :login
   match '/dashboard' => 'users#dashboard', :as => :dashboard
-  match '/get_widget' => 'users#get_widget', :as => :get_widget
-  get '/withdraw' => 'users#withdraw', :as => :withdraw
-  put '/withdraw' => 'users#update_withdraw_settings'
-  match '/generate_address' => 'welcome#generate_address'
-  match '/widget_data' => 'welcome#widget_data'
 
   resource :user_session
   resources :users
