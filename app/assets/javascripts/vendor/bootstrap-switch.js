@@ -6,7 +6,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  * ============================================================ */
 
-var $j = jQuery.noConflict();
 !function ($) {
   "use strict";
 
@@ -245,8 +244,8 @@ var $j = jQuery.noConflict();
     else
       $.error('Method ' + method + ' does not exist!');
   };
-}($j);
+}(jQuery);
 
-$j(function () {
-  $j('.switch')['bootstrapSwitch']();
+$(function () {
+  $('.switch')['bootstrapSwitch']();
 });

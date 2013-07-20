@@ -20,17 +20,21 @@ class WelcomeController < ApplicationController
     model.blocks.each do |b|
       js_time = b.time.to_i*1000
       if b.ghps
-        data_hashes << [js_time, b.ghps]
-        data_difficulty << [js_time, b.difficulty]
+        data_hashes << [js_time, b.ghps/1000.0]
+        data_difficulty << [js_time, b.difficulty/1000000.0]
       elsif b.f_ghps
-        data_f_hashes << [js_time, b.f_ghps]
-        data_f_difficulty << [js_time, b.f_difficulty]
+        data_f_hashes << [js_time, b.f_ghps/1000.0]
+        data_f_difficulty << [js_time, b.f_difficulty/1000000.0]
       end
     end
     gon.data_hashes = data_hashes
     gon.data_difficulty = data_difficulty
     gon.data_f_hashes = data_f_hashes
     gon.data_f_difficulty = data_f_difficulty
+  end
+
+  def flatui
+    render :flatui, layout: false
   end
 
 end

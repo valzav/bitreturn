@@ -7,6 +7,10 @@ class BitcoinDifficultyModel
       @date, @time, @difficulty, @ghps = date, time, difficulty, ghps
     end
 
+    def attrs
+      {date: @date, difficulty: @difficulty ? @difficulty : @f_difficulty, ghps: @ghps ? @ghps : @f_ghps}
+    end
+
   end
 
   attr_accessor :blocks
@@ -40,7 +44,7 @@ class BitcoinDifficultyModel
       cur_ghps = cur_ghps + cur_ghps * dr
       b.f_ghps = cur_ghps
 
-      time_per_block = calc_time_per_block(cur_difficulty, b.ghps || cur_ghps)
+      time_per_block = self.class.calc_time_per_block(cur_difficulty, b.ghps || cur_ghps)
       time_per_block_sum += time_per_block
       blocks_per_day = 86400.0/time_per_block
       #puts "[#{b.date}] hashes: #{b.ghps}/#{cur_ghps}, blocks per day: #{blocks_per_day},  real difficulty: #{b.difficulty}"
@@ -60,6 +64,10 @@ class BitcoinDifficultyModel
       #puts @blocks[i].inspect
     end
 
+  end
+
+  def blocks_to_array
+    @blocks.map{|b| b.attrs }
   end
 
   private
@@ -110,7 +118,7 @@ class BitcoinDifficultyModel
     blocks.length - start_index
   end
 
-  def calc_time_per_block(difficulty, hashrate)
+  def self.calc_time_per_block(difficulty, hashrate)
     target = 0x00000000ffff0000000000000000000000000000000000000000000000000000 / difficulty
     return 2 ** 256/(target*hashrate*10**9)
   end

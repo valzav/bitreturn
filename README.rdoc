@@ -3,6 +3,14 @@
 
 TODO:
 
+- use http://www.highcharts.com/
++ take into account power consumption
++ take into account pool fees
++ dollar prices
++ retrieve exchange rate from mt.gox
++ calc ROI
++ compare to AM investment
+
 
 
 
