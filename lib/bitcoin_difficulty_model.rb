@@ -28,7 +28,7 @@ class BitcoinDifficultyModel
 
     rm = get_average_monthly_growth(@blocks,30)
 
-    dr=(1+growth_monthly/100.0)**(1.0/30.0)-1
+    dr=(1+growth_monthly.to_f/100.0)**(1.0/30.0)-1
     start_index = find_start_index(@blocks)
     cur_ghps = get_last_5_points_avg_ghps(@blocks, start_index)
     cur_difficulty = @blocks.at(start_index).difficulty

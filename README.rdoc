@@ -3,7 +3,8 @@
 
 TODO:
 
-- use http://www.highcharts.com/
+- add investment horizon selector
+* use http://www.highcharts.com/
 + take into account power consumption
 + take into account pool fees
 + dollar prices

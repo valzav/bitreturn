@@ -33,4 +33,3 @@ describe BitcoinDifficultyModel do
   end
 
 end
-

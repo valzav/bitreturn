@@ -1,0 +1,13 @@
+//= require jquery
+//= require jquery_ujs
+//= require twitter/bootstrap
+//= require vendor/underscore
+//= require vendor/backbone
+//= require vendor/backbone.marionette
+//= require vendor/jquery.flot
+//= require vendor/jquery.flot.time
+//= require ./application
+//= require_tree ./utils
+//= require_tree ./config
+//= require_tree ./entities
+//= require_tree ./apps/mining_calc

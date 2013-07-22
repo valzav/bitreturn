@@ -1,0 +1,14 @@
+<div class="row">
+<form class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label" for="monthly_growth">Network speed growth rate (% monthly)</label>
+        <div class="controls">
+           <input class="attr span1" name="monthly_growth" id="monthly_growth" type="number" value="<%= @dif_model.monthly_growth %>" min = "1" max="100">
+        </div>
+    </div>
+</form>
+</div>
+
+<div class="row">
+    <div id="difficulty_chart" style="width: 900px; height: 400px;"></div>
+</div>

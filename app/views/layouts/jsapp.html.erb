@@ -32,7 +32,7 @@
 </div>
 <%= javascript_tag do %>
   $(function() {
-    //BitInventory.start({user: gon.user});
+    BitReturn.start({user: gon.user});
   });
 <% end %>
 <% if Rails.env.production? %>

@@ -9,5 +9,16 @@ class CreateModels < ActiveRecord::Migration
       t.float 'ghps'
     end
     add_index 'bitcoin_blocks', 'block_number'
+
+    create_table :assets do |t|
+
+      t.timestamps
+    end
+
+    create_table :dif_models do |t|
+
+      t.timestamps
+    end
+
   end
 end

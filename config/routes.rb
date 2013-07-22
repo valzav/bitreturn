@@ -12,6 +12,7 @@ Monetizer::Application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       resources :visitor_actions
+      resources :dif_models
     end
   end
 
