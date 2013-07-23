@@ -1,5 +1,7 @@
 #= require vendor/html5shiv
 #= require jquery
+#= require vendor/jquery-ui-1.10.3.custom.min
+#= require vendor/jquery.ui.touch-punch.min
 #= require twitter/bootstrap
 #= require vendor/jquery.cookie
 #= require vendor/bootstrap-select

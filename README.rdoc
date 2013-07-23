@@ -3,7 +3,8 @@
 
 TODO:
 
-- add investment horizon selector
++ add investment horizon selector
++ show current speed, difficulty and exchange rate
 * use http://www.highcharts.com/
 + take into account power consumption
 + take into account pool fees
@@ -12,9 +13,7 @@ TODO:
 + calc ROI
 + compare to AM investment
 
-
-
-
+http://blockexplorer.com/q/nethash
 
 # http://jsxgraph.uni-bayreuth.de/wiki/index.php/Time_series_forecasting:_double_exponential_smoothing
 #  updateDataArray = ->

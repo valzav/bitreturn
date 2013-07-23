@@ -26,9 +26,10 @@ describe BitcoinDifficultyModel do
       model.add_block(b.block_date, b.block_time, b.difficulty, b.ghps)
     end
     len1 = model.blocks.length
-    res = model.forecast(360,40.0)
+    res = model.forecast(40.0,12)
     len2 = model.blocks.length
-    (len2 - len1).should == 360
+    (len2 - len1).should > 360
+    (len2 - len1).should < 370
     File.open(Rails.root.join('spec/test_data/blocks_forecast.yml'),'w'){|f| f.write model.blocks_to_array.to_yaml}
   end
 

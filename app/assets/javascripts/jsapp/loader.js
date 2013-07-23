@@ -1,9 +1,12 @@
 //= require jquery
+//= require vendor/jquery-ui-1.10.3.custom.min
+//= require vendor/jquery.ui.touch-punch.min
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require vendor/underscore
 //= require vendor/backbone
 //= require vendor/backbone.marionette
+//= require vendor/bootstrap-select
 //= require vendor/jquery.flot
 //= require vendor/jquery.flot.time
 //= require ./application

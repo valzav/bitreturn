@@ -42,17 +42,22 @@
 
   MiningCalcApp.DifficultyController =
 
+    spinnerChange: (event, ui) ->
+      console.log '---------'
+
     show: ->
       @model = new App.Entities.DifModel(gon.dm)
       @model.on 'change', @difModelChanged
       console.log @model
       @view = new MiningCalcApp.DifficultyView model: @model
-      @view.on 'show', -> doPlot(@model)
+      @view.on 'show', ->
+        $('#investment_horizon').selectpicker()
+        doPlot(@model)
       App.difficultyRegion.show @view
 
     difModelChanged: ->
       #console.log this
-      console.log "difModelChanged : #{@get('monthly_growth')}"
+      console.log "difModelChanged monthly_growth:#{@get('monthly_growth')}  investment_horizon:#{@get('investment_horizon')}"
       unless window.model_is_saving
         window.save_model @, null, (model) ->
           doPlot(model)

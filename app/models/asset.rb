@@ -1,5 +1,14 @@
+require 'open-uri'
+require 'json'
+
 class Asset < ActiveRecord::Base
   # attr_accessible :title, :body
+
+  def self.get_usd_btc_ticker
+    ticker_url = 'http://data.mtgox.com/api/1/BTCUSD/ticker_fast'
+    json = JSON.parse(open(ticker_url).read)
+    return json['return']['last_local']['value'].to_f
+  end
 
   def self.calc_mining_cashflows(asset, blocks, params)
     btc_sum = 0.0

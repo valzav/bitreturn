@@ -24,16 +24,17 @@ class BitcoinDifficultyModel
     @blocks << Block.new(date, time, difficulty, ghps)
   end
 
-  def forecast(days, growth_monthly)
+  def forecast(monthly_growth, investment_horizon)
 
-    rm = get_average_monthly_growth(@blocks,30)
+    res = {}
+    res[:avg_growth] = get_average_monthly_growth(@blocks,30)
 
-    dr=(1+growth_monthly.to_f/100.0)**(1.0/30.0)-1
+    dr=(1.0+monthly_growth.to_f/100.0)**(1.0/30.0)-1
     start_index = find_start_index(@blocks)
-    cur_ghps = get_last_5_points_avg_ghps(@blocks, start_index)
-    cur_difficulty = @blocks.at(start_index).difficulty
+    res[:cur_speed] = cur_ghps = get_last_5_points_avg_ghps(@blocks, start_index)
+    res[:cur_difficulty] = cur_difficulty = @blocks.at(start_index).difficulty
 
-    prolong(@blocks, days)
+    prolong(@blocks, investment_horizon)
 
     blocks_counter = 0.0
     counter = 0
@@ -63,7 +64,7 @@ class BitcoinDifficultyModel
 
       #puts @blocks[i].inspect
     end
-
+    return res
   end
 
   def blocks_to_array
@@ -76,7 +77,6 @@ class BitcoinDifficultyModel
     ghps_delta = 0.0
     deltas_counter = 0
     prev_ghps = nil
-    five_points_ghps_sum = 0.0
     len = blocks.length - @forecast_from_days_ago
     start_index = len - days
     blocks.each_with_index do |b,i|
@@ -123,11 +123,14 @@ class BitcoinDifficultyModel
     return 2 ** 256/(target*hashrate*10**9)
   end
 
-  def prolong(blocks, days)
+  def prolong(blocks, investment_horizon)
     date = blocks.last.date
-    (1..days).each do
+    horizon_date = date
+    (1..investment_horizon.to_i).to_a.each { horizon_date = horizon_date.next_month }
+    (0..365).each do
       date += 1
       blocks << Block.new(date, date.to_time, nil, nil)
+      break if date >= horizon_date
     end
   end
 

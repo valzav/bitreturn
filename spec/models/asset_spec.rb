@@ -1,7 +1,5 @@
 require 'spec_helper'
 require 'ostruct'
-require 'open-uri'
-require 'json'
 
 require Rails.root.join('lib/bitcoin_difficulty_model.rb').to_s
 
@@ -9,11 +7,8 @@ describe Asset do
 
   it 'should be able to generate cash flows' do
 
-    ticker_url = 'http://data.mtgox.com/api/1/BTCUSD/ticker_fast'
-    json = JSON.parse(open(ticker_url).read)
-
     params = OpenStruct.new
-    params.usd_btc_ticker = json['return']['last_local']['value'].to_f
+    params.usd_btc_ticker = Asset.get_usd_btc_ticker
     params.power_cost = 0.15
     params.pool_fee = 0.02
     params.start_date = Date.parse('2013-09-01')

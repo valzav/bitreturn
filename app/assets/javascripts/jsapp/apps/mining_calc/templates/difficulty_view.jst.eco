@@ -1,12 +1,46 @@
 <div class="row">
-<form class="form-horizontal">
-    <div class="control-group">
-        <label class="control-label" for="monthly_growth">Network speed growth rate (% monthly)</label>
-        <div class="controls">
-           <input class="attr span1" name="monthly_growth" id="monthly_growth" type="number" value="<%= @dif_model.monthly_growth %>" min = "1" max="100">
-        </div>
+
+    <div class="span4">
+        <table>
+            <tr>
+                <td>Current Exchange Rate</td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>$<%= @dif_model.usd_btc_ticker %></td>
+            </tr>
+            <tr>
+                <td>Current Speed (Th/s)</td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td><%= @dif_model.cur_speed %></td>
+            </tr>
+            <tr>
+                <td>Current Difficulty (M)</td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td><%= @dif_model.cur_difficulty %></td>
+            </tr>
+        </table>
     </div>
-</form>
+
+    <div class="span3">
+    <label class="control-label" for="monthly_growth">Network speed growth (%/month)</label>
+    <input class="attr span1" name="monthly_growth" id="monthly_growth" type="number"
+           value="<%= @dif_model.monthly_growth %>" min="1" max="100">
+    </div>
+
+    <div class="span3">
+    <label class="control-label" for="monthly_growth">Investment horizon</label>
+
+    <select id="investment_horizon" class="select-block mbl" name="investment_horizon">
+        <% for i in [1..12]: %>
+        <option value="<%= i %>"
+        <%= if @dif_model.investment_horizon == i then 'selected="true"' else '' %> >
+        <%= i %> <%= if i == 1 then 'Month' else 'Months' %>
+        </option>
+        <% end %>
+    </select>
+    </div>
+    <div class="span2">
+        &nbsp;
+    </div>
 </div>
 
 <div class="row">
