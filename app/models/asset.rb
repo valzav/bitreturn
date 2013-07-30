@@ -2,7 +2,8 @@ require 'open-uri'
 require 'json'
 
 class Asset < ActiveRecord::Base
-  # attr_accessible :title, :body
+  belongs_to :assetable, polymorphic: true
+  attr_accessible :name, :assetable
 
   def self.get_usd_btc_ticker
     ticker_url = 'http://data.mtgox.com/api/1/BTCUSD/ticker_fast'

@@ -38,14 +38,16 @@ MoneyRails.configure do |config|
 
   # Default ActiveRecord migration configuration values for columns:
   #
-  config.amount_column = { prefix: nil,           # column name prefix
-                            postfix: '_amount',    # column name  postfix
-                            column_name: nil,     # full column name (overrides prefix, postfix and accessor name)
-                            type: :bigint,       # column type
-                            present: true,        # column will be created
-                            null: true,          # other options will be treated as column options
-                            #default: 0
-                          }
+
+  config.amount_column = {prefix: nil, # column name prefix
+                          postfix: '_price', # column name  postfix
+                          column_name: nil, # full column name (overrides prefix, postfix and accessor name)
+                          type: :bigint, # column type
+                          present: true, # column will be created
+                          null: true, # other options will be treated as column options
+                          #default: 0
+  }
+
   #
   config.currency_column = {  prefix: '',
                               postfix: '_currency',
