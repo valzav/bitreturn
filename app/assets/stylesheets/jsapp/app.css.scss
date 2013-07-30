@@ -9,3 +9,7 @@
 @mixin border-radius($r) {
   @include prefixer(border-radius, $r, spec);
 }
+
+#monthly_growth {
+  width: 44px;
+}

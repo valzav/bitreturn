@@ -3,6 +3,11 @@
 
 TODO:
 
+- add assets
+- add benchmark
+- add results
+- add results chart
+
 + add investment horizon selector
 + show current speed, difficulty and exchange rate
 * use http://www.highcharts.com/

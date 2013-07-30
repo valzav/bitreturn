@@ -5,25 +5,25 @@
             <tr>
                 <td>Current Exchange Rate</td>
                 <td>&nbsp;&nbsp;&nbsp;</td>
-                <td>$<%= @dif_model.usd_btc_ticker %></td>
+                <td>$<%= @usd_btc_ticker %></td>
             </tr>
             <tr>
                 <td>Current Speed (Th/s)</td>
                 <td>&nbsp;&nbsp;&nbsp;</td>
-                <td><%= @dif_model.cur_speed %></td>
+                <td><%= @cur_speed %></td>
             </tr>
             <tr>
                 <td>Current Difficulty (M)</td>
                 <td>&nbsp;&nbsp;&nbsp;</td>
-                <td><%= @dif_model.cur_difficulty %></td>
+                <td><%= @cur_difficulty %></td>
             </tr>
         </table>
     </div>
 
     <div class="span3">
-    <label class="control-label" for="monthly_growth">Network speed growth (%/month)</label>
-    <input class="attr span1" name="monthly_growth" id="monthly_growth" type="number"
-           value="<%= @dif_model.monthly_growth %>" min="1" max="100">
+    <label class="control-label" for="monthly_growth">Network speed growth</label>
+    <input class="attr" name="monthly_growth" id="monthly_growth" type="number"
+           value="<%= @monthly_growth %>" min="1" max="99" size="2" >  % / month
     </div>
 
     <div class="span3">
@@ -32,7 +32,7 @@
     <select id="investment_horizon" class="select-block mbl" name="investment_horizon">
         <% for i in [1..12]: %>
         <option value="<%= i %>"
-        <%= if @dif_model.investment_horizon == i then 'selected="true"' else '' %> >
+        <%= if @investment_horizon == i then 'selected="true"' else '' %> >
         <%= i %> <%= if i == 1 then 'Month' else 'Months' %>
         </option>
         <% end %>
@@ -44,5 +44,5 @@
 </div>
 
 <div class="row">
-    <div id="difficulty_chart" style="width: 900px; height: 400px;"></div>
+    <div class="span12" id="difficulty_chart" style="width: 900px; height: 400px;"></div>
 </div>

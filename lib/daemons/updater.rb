@@ -32,7 +32,8 @@ while $running do
     puts "new blocks imported: #{counter}"
     sleep(600)
   rescue Exception => msg
-    Rails.logger.error "#{dt} !!! Error in updater : #{msg.to_s}\n#{msg.backtrace.join('; ')}"
+    break if msg.class == Interrupt
+    Rails.logger.error "#{dt} !!! Error in updater : #{msg.to_s} (#{msg.class})\n#{msg.backtrace.join("\n")}"
     sleep 60
   end
 end
