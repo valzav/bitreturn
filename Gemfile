@@ -10,6 +10,7 @@ group :assets do
   gem 'bourbon'
   gem 'eco'
   gem 'bootstrap-sass-rails'
+  gem 'jquery-ui-rails'
 end
 
 group :development do

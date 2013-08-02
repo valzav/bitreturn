@@ -1,0 +1,17 @@
+<h4>Mining Assets</h4>
+<table class="table table-striped">
+    <tbody>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Speed</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    </tbody>
+</table>
+
+<button id="add_asset" class="btn btn-primary">
+    <i class="fui-plus-inverted"></i>Add
+</button>

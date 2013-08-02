@@ -1,0 +1,11 @@
+<td><%= @name %></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>
+    <button class="edit"><i class="fui-new"></i></button>
+</td>
+<td>
+    <button class="delete"><i class="fui-cross"></i></button>
+</td>
+

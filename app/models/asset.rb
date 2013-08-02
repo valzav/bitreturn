@@ -2,8 +2,13 @@ require 'open-uri'
 require 'json'
 
 class Asset < ActiveRecord::Base
+  belongs_to :user
   belongs_to :assetable, polymorphic: true
-  attr_accessible :name, :assetable
+  attr_accessible :name, :assetable, :quantity, :purchase_date, :effective_date
+
+  def serializer
+    self.active_model_serializer.new(self, root: false)
+  end
 
   def self.get_usd_btc_ticker
     ticker_url = 'http://data.mtgox.com/api/1/BTCUSD/ticker_fast'

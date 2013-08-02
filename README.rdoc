@@ -3,6 +3,7 @@
 
 TODO:
 
+- use RailsMoney instead of btc_price
 - add assets
 - add benchmark
 - add results

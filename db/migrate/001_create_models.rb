@@ -17,29 +17,41 @@ class CreateModels < ActiveRecord::Migration
 
 
     create_table :miners do |t|
+      t.integer 'user_id'
       t.string 'name'
-      t.float 'btc_price'
-      t.float 'usd_price'
+      t.integer 'price_cents', limit: 8
+      t.string 'currency'
       t.float 'ghps'
       t.float 'power_use_watt'
       t.string 'availability'
       t.string 'country_of_origin'
+      t.boolean 'public'
       t.timestamps
     end
 
     create_table :securities do |t|
+      t.integer 'user_id'
+      t.string 'name'
+      t.integer 'price_cents', limit: 8
+      t.string 'currency'
+      t.string 'availability'
+      t.string 'country_of_origin'
+      t.boolean 'public'
+      t.timestamps
       t.timestamps
     end
 
     create_table :assets do |t|
+      t.integer 'user_id'
       t.references 'assetable', polymorphic: true
       t.string 'name'
+      t.integer 'quantity'
       t.date 'purchase_date'
       t.date 'effective_date'
-      t.float 'btc_price'
-      t.float 'usd_price'
-      #t.integer 'pool_fee_percent'
-
+      t.integer 'price_cents', limit: 8
+      t.string 'currency'
+      t.float 'ghps'
+      t.float 'power_use_watt'
       t.timestamps
     end
 

@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
   <%= csrf_meta_tags %>
-  <%= include_gon %>
   <%= @og.facebook_og_metas.html_safe if @og %>
   <%= @og.twitter_card_metas.html_safe if @og %>
   <%= javascript_include_tag "jsapp/loader" %>
@@ -15,6 +14,7 @@
   <%= stylesheet_link_tag "vendor/font-awesome-ie7", :media => "all" %>
   <![endif]-->
   <%= stylesheet_link_tag "jsapp/app", :media => "all" %>
+  <%= include_gon %>
 </head>
 <body>
 <div class="container">

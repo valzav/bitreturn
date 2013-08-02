@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :accounts, :dependent => :destroy
+  has_many :assets
 
   attr_accessible :name, :first_name, :last_name, :email, :address_1, :address_2, :city, :state, :zip, :country
   attr_accessible :website_name, :website_url, :nickname, :password, :password_confirmation, :single_access_token, :active

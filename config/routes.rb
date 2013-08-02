@@ -13,6 +13,8 @@ Monetizer::Application.routes.draw do
     namespace :v1 do
       resources :visitor_actions
       resources :dif_models
+      resources :miners
+      resources :assets
     end
   end
 

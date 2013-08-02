@@ -40,7 +40,7 @@ MoneyRails.configure do |config|
   #
 
   config.amount_column = {prefix: nil, # column name prefix
-                          postfix: '_price', # column name  postfix
+                          postfix: '_cents', # column name  postfix
                           column_name: nil, # full column name (overrides prefix, postfix and accessor name)
                           type: :bigint, # column type
                           present: true, # column will be created

@@ -37,15 +37,19 @@ ActiveRecord::Schema.define(:version => 1) do
   add_index "accounts", ["user_id", "platform_id", "fbapp_id"], :name => "index_accounts_on_user_id_and_platform_id_and_fbapp_id"
 
   create_table "assets", :force => true do |t|
+    t.integer  "user_id"
     t.integer  "assetable_id"
     t.string   "assetable_type"
     t.string   "name"
+    t.integer  "quantity"
     t.date     "purchase_date"
     t.date     "effective_date"
-    t.float    "btc_price"
-    t.float    "usd_price"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.integer  "price_cents",    :limit => 8
+    t.string   "currency"
+    t.float    "ghps"
+    t.float    "power_use_watt"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "bitcoin_blocks", :force => true do |t|
@@ -65,15 +69,17 @@ ActiveRecord::Schema.define(:version => 1) do
   end
 
   create_table "miners", :force => true do |t|
+    t.integer  "user_id"
     t.string   "name"
-    t.float    "btc_price"
-    t.float    "usd_price"
+    t.integer  "price_cents",       :limit => 8
+    t.string   "currency"
     t.float    "ghps"
     t.float    "power_use_watt"
     t.string   "availability"
     t.string   "country_of_origin"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.boolean  "public"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "platforms", :force => true do |t|
@@ -88,8 +94,15 @@ ActiveRecord::Schema.define(:version => 1) do
   add_index "platforms", ["name"], :name => "index_platforms_on_name"
 
   create_table "securities", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.string   "name"
+    t.integer  "price_cents",       :limit => 8
+    t.string   "currency"
+    t.string   "availability"
+    t.string   "country_of_origin"
+    t.boolean  "public"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "users", :force => true do |t|

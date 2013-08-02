@@ -9,6 +9,7 @@
     difficultyRegion: "#difficulty_region"
     assetsRegion: "#assets_region"
     returnRegion: "#return_region"
+    dialogRegion: Marionette.Region.Dialog.extend el: "#dialog_region"
 
   App.addInitializer ->
     App.module('MiningCalcApp').start()

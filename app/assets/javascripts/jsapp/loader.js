@@ -1,6 +1,8 @@
 //= require jquery
-//= require vendor/jquery-ui-1.10.3.custom.min
-//= require vendor/jquery.ui.touch-punch.min
+//= require jquery.ui.dialog
+//= require jquery.ui.datepicker
+// require vendor/jquery-ui-1.10.3.custom.min
+// require vendor/jquery.ui.touch-punch.min
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require vendor/underscore
@@ -9,8 +11,8 @@
 //= require vendor/bootstrap-select
 //= require vendor/jquery.flot
 //= require vendor/jquery.flot.time
-//= require ./application
 //= require_tree ./utils
 //= require_tree ./config
+//= require ./application
 //= require_tree ./entities
 //= require_tree ./apps/mining_calc
