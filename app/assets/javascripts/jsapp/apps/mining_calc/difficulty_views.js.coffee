@@ -1,8 +1,7 @@
 @BitReturn.module "MiningCalcApp", (MiningCalcApp, App, Backbone, Marionette, $, _) ->
 
   class MiningCalcApp.DifficultyView extends Marionette.Layout
-
-    template: "mining_calc/templates/difficulty_view"
+    template: 'mining_calc/difficulty_view'
 
     events:
       'change #monthly_growth': 'monthly_growth_changed'

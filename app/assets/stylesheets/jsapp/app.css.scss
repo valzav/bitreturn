@@ -12,6 +12,25 @@
   @include prefixer(border-radius, $r, spec);
 }
 
+.form-horizontal .control-group {
+  margin-bottom: 15px;
+}
+
 #monthly_growth {
   width: 44px;
+}
+
+#dialog_region form {
+  margin: 0;
+}
+
+table.assets {
+  font-size: 90%;
+  td, th {
+    padding: 4px 12px;
+  }
+  td.controls {
+    font-size: 20px; width: 55px;
+    i { padding: 0 3px;}
+  }
 }

@@ -6,6 +6,6 @@
     toJSON: ->
       monthly_growth: @attributes.monthly_growth
       investment_horizon: @attributes.investment_horizon
-      usd_btc_ticker: @attributes.usd_btc_ticker
+      usd_btc_rate: @attributes.usd_btc_rate
       cur_speed: @attributes.cur_speed
       cur_difficulty: @attributes.cur_difficulty

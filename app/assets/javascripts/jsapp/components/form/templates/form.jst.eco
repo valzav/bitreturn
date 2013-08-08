@@ -1,0 +1,12 @@
+<div id="form-content-region"></div>
+<% if @footer: %>
+<div class="modal-footer">
+    <% if @buttons: %>
+    <% for button in @buttons: %>
+    <button type="<%= button.buttonType %>" data-form-button="<%= button.type %>" class="<%= button.className %>">
+        <%= button.text %>
+    </button>
+    <% end %>
+    <% end %>
+</div>
+<% end %>

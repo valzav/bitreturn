@@ -1,6 +1,9 @@
 <div class="row">
-    <div id="miners_region" class="span8">
+    <div id="miners_region" class="span12">
     </div>
+</div>
+
+<div class="row">
     <div id="benchmark_region" class="span4">
     </div>
 </div>

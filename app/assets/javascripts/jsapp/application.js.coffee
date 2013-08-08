@@ -14,6 +14,9 @@
   App.addInitializer ->
     App.module('MiningCalcApp').start()
 
+  App.reqres.setHandler "default:region", ->
+    App.assetsRegion
+
   App.on "initialize:after", (options) ->
     Backbone.history.start() if Backbone.history
 

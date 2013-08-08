@@ -11,8 +11,12 @@
 //= require vendor/bootstrap-select
 //= require vendor/jquery.flot
 //= require vendor/jquery.flot.time
+//= require vendor/syphon
 //= require_tree ./utils
 //= require_tree ./config
 //= require ./application
+//= require_tree ./controllers
+//= require_tree ./views
 //= require_tree ./entities
+//= require_tree ./components
 //= require_tree ./apps/mining_calc

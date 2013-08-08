@@ -9,11 +9,11 @@
   <%= @og.facebook_og_metas.html_safe if @og %>
   <%= @og.twitter_card_metas.html_safe if @og %>
   <%= javascript_include_tag "jsapp/loader" %>
+  <%= stylesheet_link_tag "jsapp/app", :media => "all" %>
   <%= stylesheet_link_tag "vendor/font-awesome", :media => "all" %>
   <!--[if IE 7]>
   <%= stylesheet_link_tag "vendor/font-awesome-ie7", :media => "all" %>
   <![endif]-->
-  <%= stylesheet_link_tag "jsapp/app", :media => "all" %>
   <%= include_gon %>
 </head>
 <body>

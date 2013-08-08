@@ -1,12 +1,14 @@
 <h4>Mining Assets</h4>
-<table class="table table-striped">
+<table class="table table-striped assets">
     <tbody>
     <tr>
         <th>Name</th>
         <th>Price</th>
-        <th>Speed</th>
-        <th></th>
-        <th></th>
+        <th>Hash&nbsp;Rate&nbsp;(Gh/s)</th>
+        <th>Power&nbsp;Use&nbsp;(Watt)</th>
+        <th>Purchased&nbsp;On</th>
+        <th>Mining&nbsp;Started</th>
+        <th>Quantity</th>
         <th></th>
     </tr>
     </tbody>

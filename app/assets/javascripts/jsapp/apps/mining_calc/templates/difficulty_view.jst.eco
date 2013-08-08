@@ -5,7 +5,7 @@
             <tr>
                 <td>Current Exchange Rate</td>
                 <td>&nbsp;&nbsp;&nbsp;</td>
-                <td>$<%= @usd_btc_ticker %></td>
+                <td>$<%= @usd_btc_rate %></td>
             </tr>
             <tr>
                 <td>Current Speed (Th/s)</td>

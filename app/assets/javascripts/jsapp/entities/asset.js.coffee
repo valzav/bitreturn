@@ -5,8 +5,8 @@
 
   class Entities.Asset extends Backbone.Model
     defaults:
-      purchase_date: $.datepicker.formatDate("d MM, yy", today)
-      effective_date: $.datepicker.formatDate("d MM, yy", in_a_week)
+      purchase_date: $.datepicker.formatDate("mm/dd/yy", today)
+      effective_date: $.datepicker.formatDate("mm/dd/yy", in_a_week)
     urlRoot: ->
       '/assets'
 

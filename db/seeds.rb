@@ -10,7 +10,7 @@ User.create!({
              })
 
 
-block_erupter = Miner.create!({
+miner = Miner.create!({
                 name: 'ASICMiner Block Erupter USB',
                 currency: 'BTC',
                 price: 0.55,
@@ -194,7 +194,11 @@ Miner.create!({
               })
 
 Asset.create!({
-                name: block_erupter.name,
-                assetable: block_erupter,
-                quantity: 10
+                name: miner.name,
+                assetable: miner,
+                quantity: 10,
+                currency: miner.currency,
+                price: miner.price,
+                ghps: miner.ghps,
+                power_use_watt: miner.power_use_watt
               })

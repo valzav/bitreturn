@@ -55,6 +55,24 @@ class CreateModels < ActiveRecord::Migration
       t.timestamps
     end
 
+    create_table :market_envs do |t|
+      t.integer 'user_id'
+      t.date 'date'
+      t.float 'usd_btc_rate'
+      t.float 'power_cost'
+      t.float 'pool_fee'
+      t.timestamps
+    end
+
+    create_table :analysis_results do |t|
+      t.float :power_cost
+      t.float :pool_fee
+      t.float :gross_income
+      t.float :net_income
+      t.float :roi
+      t.text :cashflows
+      t.timestamps
+    end
 
   end
 end

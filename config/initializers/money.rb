@@ -9,7 +9,7 @@ MoneyRails.configure do |config|
     :priority => 1,
     :iso_code => "BTC",
     :name => "BTC in Satoshis",
-    :symbol => "B",
+    :symbol => "฿",
     :symbol_first => true,
     :subunit => "Satoshi",
     :subunit_to_unit => 100000000,

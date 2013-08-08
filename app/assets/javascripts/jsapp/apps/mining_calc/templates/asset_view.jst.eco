@@ -1,11 +1,12 @@
 <td><%= @name %></td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>
-    <button class="edit"><i class="fui-new"></i></button>
-</td>
-<td>
-    <button class="delete"><i class="fui-cross"></i></button>
+<td><%= @price_display %></td>
+<td><%= @ghps %></td>
+<td><%= @power_use_watt %></td>
+<td><%= @purchase_date %></td>
+<td><%= @effective_date %></td>
+<td><%= @quantity %></td>
+<td class="controls">
+    <a class="edit"><i class="icon-edit"></i></a>
+    <a class="delete"><i class="icon-remove"></i></a>
 </td>
 

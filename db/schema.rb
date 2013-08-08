@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(:version => 1) do
   add_index "accounts", ["uid"], :name => "index_accounts_on_uid"
   add_index "accounts", ["user_id", "platform_id", "fbapp_id"], :name => "index_accounts_on_user_id_and_platform_id_and_fbapp_id"
 
+  create_table "analysis_results", :force => true do |t|
+    t.float    "power_cost"
+    t.float    "pool_fee"
+    t.float    "gross_income"
+    t.float    "net_income"
+    t.float    "roi"
+    t.text     "cashflows"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "assets", :force => true do |t|
     t.integer  "user_id"
     t.integer  "assetable_id"
@@ -66,6 +77,16 @@ ActiveRecord::Schema.define(:version => 1) do
   create_table "dif_models", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "market_envs", :force => true do |t|
+    t.integer  "user_id"
+    t.date     "date"
+    t.float    "usd_btc_rate"
+    t.float    "power_cost"
+    t.float    "pool_fee"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "miners", :force => true do |t|

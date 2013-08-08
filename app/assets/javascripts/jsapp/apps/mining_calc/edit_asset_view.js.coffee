@@ -7,5 +7,5 @@
       @$('.datepicker').datepicker
         showOtherMonths: true
         selectOtherMonths: true
-        dateFormat: "d MM, yy"
+        dateFormat: "mm/dd/yy"
         yearRange: "-1:+1"
