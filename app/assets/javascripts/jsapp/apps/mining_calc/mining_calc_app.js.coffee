@@ -10,6 +10,7 @@
       console?.log '---> route API.index'
       MiningCalcApp.DifficultyController.show()
       MiningCalcApp.AssetsController.show()
+      MiningCalcApp.ResultController.show()
     edit: (asset) ->
       MiningCalcApp.EditAssetController.edit asset
 

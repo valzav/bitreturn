@@ -1,0 +1,21 @@
+<% console.log @ %>
+<h4>Results</h4>
+<div class="row">
+    <div class="span4">
+        roi: <%= @roi %><br/>
+        gross_income: <%= @gross_income %><br/>
+        net_income: <%= @net_income %><br/>
+    </div>
+    <div class="span4">
+        expenses: <%= @expenses %><br/>
+        pool_fee: <%= @pool_fee %><br/>
+        power_cost: <%= @power_cost %><br/>
+    </div>
+    <div class="span4">&nbsp;</div>
+</div>
+<div class="row">
+    <div class="span12" id="result_chart" style="width: 900px; height: 400px;"></div>
+</div>
+<br/>
+<br/>
+<br/>

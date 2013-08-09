@@ -70,6 +70,7 @@ class CreateModels < ActiveRecord::Migration
       t.float :gross_income
       t.float :net_income
       t.float :roi
+      t.float :expenses
       t.text :cashflows
       t.timestamps
     end

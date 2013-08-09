@@ -4,17 +4,17 @@ class DifModel < ActiveRecord::Base
   attr_accessible :monthly_growth, :investment_horizon, :usd_btc_rate, :cur_speed, :cur_difficulty
   attr_accessor :monthly_growth, :investment_horizon, :usd_btc_rate, :cur_speed, :cur_difficulty
   attr_reader :data_hashes, :data_difficulty, :data_f_hashes, :data_f_difficulty
-  attr_reader :cur_speed, :cur_difficulty, :usd_btc_rate
+  attr_reader :cur_speed, :cur_difficulty, :usd_btc_rate, :model
 
   def serializer
     self.active_model_serializer.new(self, root: false)
   end
 
   def forecast!
-    model = BitcoinDifficultyModel.new
+    @model = BitcoinDifficultyModel.new
     blocks_data = Bitcoin::Block.select('block_date, block_time, ghps, difficulty').where("block_time>'2013-01-01'").order('id')
     blocks_data.each do |b|
-      model.add_block(b.block_date, b.block_time, b.difficulty, b.ghps)
+      @model.add_block(b.block_date, b.block_time, b.difficulty, b.ghps)
     end
 
     res = model.forecast(monthly_growth, investment_horizon)
@@ -23,14 +23,14 @@ class DifModel < ActiveRecord::Base
     @usd_btc_rate = "%.02f" % MarketEnv.get_usd_btc_rate
 
     @data_hashes = []; @data_difficulty = []; @data_f_hashes = []; @data_f_difficulty = []
-    model.blocks.each do |b|
-      js_time = b.time.to_i*1000
+    @model.blocks.each do |b|
+      tt = b.time.to_date.to_s(:number).to_i
       if b.ghps
-        @data_hashes << [js_time, b.ghps/1000.0]
-        @data_difficulty << [js_time, b.difficulty/1000000.0]
+        @data_hashes << [tt, (b.ghps/1000.0).round(2)]
+        @data_difficulty << [tt, (b.difficulty/1000000.0).round(2)]
       elsif b.f_ghps
-        @data_f_hashes << [js_time, b.f_ghps/1000.0]
-        @data_f_difficulty << [js_time, b.f_difficulty/1000000.0]
+        @data_f_hashes << [tt, (b.f_ghps/1000.0).round(2)]
+        @data_f_difficulty << [tt, (b.f_difficulty/1000000.0).round(2)]
       end
     end
   end

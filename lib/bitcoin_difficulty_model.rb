@@ -13,7 +13,7 @@ class BitcoinDifficultyModel
 
   end
 
-  attr_accessor :blocks
+  attr_accessor :blocks, :horizon_date
 
   def initialize
     @blocks = []
@@ -125,12 +125,12 @@ class BitcoinDifficultyModel
 
   def prolong(blocks, investment_horizon)
     date = blocks.last.date
-    horizon_date = date
-    (1..investment_horizon.to_i).to_a.each { horizon_date = horizon_date.next_month }
+    @horizon_date = date
+    (1..investment_horizon.to_i).to_a.each { @horizon_date = @horizon_date.next_month }
     (0..365).each do
       date += 1
       blocks << Block.new(date, date.to_time, nil, nil)
-      break if date >= horizon_date
+      break if date >= @horizon_date
     end
   end
 

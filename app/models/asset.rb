@@ -19,29 +19,38 @@ class Asset < ActiveRecord::Base
     return price.to_f / @btc_ticker
   end
 
-  def self.calc_mining_cashflows(asset, blocks, market_env, end_date)
-    puts market_env.inspect
+  def analyze(blocks, market_env, end_date)
+    Asset.analyze_miner(self, blocks, market_env, end_date)
+  end
+
+  def self.analyze_miner(asset, blocks, market_env, end_date)
     btc_sum = 0.0
-    power_used = 0.0
     pool_fee_btc = 0.0
+    power_cost = 0.0
+    cashflow = []
     blocks.each do |b|
-      next if b[:date] < asset.effective_date
-      break if b[:date] > end_date
-      time_per_block = BitcoinDifficultyModel.calc_time_per_block(b[:difficulty], asset.ghps)
+      logger.debug b.inspect
+      next if b.date < asset.effective_date
+      break if b.date > end_date
+      difficulty = b.difficulty || b.f_difficulty
+      time_per_block = BitcoinDifficultyModel.calc_time_per_block(difficulty, asset.ghps)
       blocks_per_24h = 24*3600/time_per_block
       btc_per_24h = blocks_per_24h * 25
       btc_sum += btc_per_24h
-      power_used += asset.power_use_watt * 24
+      power_cost += asset.power_use_watt * 24 * market_env.power_cost / 1000.0
       pool_fee_btc += btc_per_24h * market_env.pool_fee
+      cashflow << [b.date.to_s(:number), (btc_sum - power_cost - pool_fee_btc).round(3)]
       #puts "#{b[:date]} difficulty: #{b[:difficulty]} #{time_per_block} #{btc_per_24h}"
-      #puts "power_used: #{power_used}, pool_fee_btc: #{pool_fee_btc}"
+      #puts "btc_sum: #{btc_sum}, power_used: #{power_used}, pool_fee_btc: #{pool_fee_btc}"
     end
     result = AnalysisResult.new
-    result.power_cost = (power_used * market_env.power_cost / 1000.0) / market_env.usd_btc_rate
+    result.power_cost = power_cost
     result.pool_fee = pool_fee_btc
     result.gross_income = btc_sum
-    result.net_income = btc_sum - result.power_cost - result.pool_fee
+    result.expenses = result.power_cost - result.pool_fee
+    result.net_income = result.gross_income - result.expenses
     result.roi = (result.net_income - asset.btc_price) / asset.btc_price
+    result.cashflows = cashflow
     return result
   end
 

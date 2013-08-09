@@ -8,7 +8,7 @@
   App.addRegions
     difficultyRegion: "#difficulty_region"
     assetsRegion: "#assets_region"
-    returnRegion: "#return_region"
+    resultRegion: "#result_region"
     dialogRegion: Marionette.Region.Dialog.extend el: "#dialog_region"
 
   App.addInitializer ->

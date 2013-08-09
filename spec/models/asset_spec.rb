@@ -5,40 +5,39 @@ require Rails.root.join('lib/bitcoin_difficulty_model.rb').to_s
 
 describe Asset do
 
-  it 'should be able to generate cash flows' do
-
-    market_env = MarketEnv.create!({
-       usd_btc_rate: MarketEnv.get_usd_btc_rate,
-       power_cost: 0.15,
-       pool_fee: 0.02,
+  let(:mining_asset) do
+    Asset.create ({
+      name: 'BFL Jalapeno 7 Gh/s',
+      quantity: 1,
+      currency: 'USD',
+      price: 240,
+      ghps: 7,
+      power_use_watt: 30,
+      purchase_date: Date.parse('2013-09-01'),
+      effective_date: Date.parse('2013-09-01')
     })
-    puts market_env.inspect
+  end
+
+  let(:market_env) do
+    MarketEnv.create ({
+      usd_btc_rate: MarketEnv.get_usd_btc_rate,
+      power_cost: 0.15 / MarketEnv.get_usd_btc_rate,
+      pool_fee: 0.02,
+    })
+  end
+
+  it 'should be able to analyze mining asset' do
+    MarketEnv.stub(:get_usd_btc_rate){ 100.0 }
     end_date = Date.parse('2014-08-17')
-
-    #asset = OpenStruct.new
-    #asset.ghps = 7
-    #asset.price = 240
-    #asset.start_date = params.start_date
-    #asset.btc_price = asset.price / params.usd_btc_rate
-    #asset.power_use = 30
-
-    asset = Asset.create!({
-                            name: 'BFL Jalapeno 7 Gh/s',
-                            quantity: 1,
-                            currency: 'USD',
-                            price: 240,
-                            ghps: 7,
-                            power_use_watt: 30,
-                            purchase_date: Date.parse('2013-09-01'),
-                            effective_date: Date.parse('2013-09-01')
-                          })
-
-    puts "Price #{asset.btc_price} BTC, usd/btc ticker: #{market_env.usd_btc_rate}"
-
-    blocks = load_yaml('blocks_forecast.yml')
-    result = Asset.calc_mining_cashflows(asset, blocks, market_env, end_date)
+    blocks = load_yaml('blocks_forecast.yml').map{|b| OpenStruct.new(b) }
+    result = mining_asset.analyze(blocks, market_env, end_date)
     puts result.inspect
+    result.power_cost.should be_within(0.01).of(0.34)
+    result.pool_fee.should be_within(0.01).of(0.13)
+    result.roi.should be_within(0.001).of(1.736)
+  end
 
+  it 'should be able to analyze bond' do
     #params.start_date = Date.parse('2013-09-01')
     #params.investment_amount = 240 / params.usd_btc_rate
     #asset = OpenStruct.new
@@ -55,7 +54,6 @@ describe Asset do
     #]
     #result = Asset.calc_security_cashflows(asset, blocks, params)
     #puts result.inspect
-
   end
 
 
