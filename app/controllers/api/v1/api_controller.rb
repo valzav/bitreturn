@@ -3,7 +3,7 @@ module Api
     class ApiController < ApplicationController
       respond_to :json
       before_filter :set_cache_buster
-      #before_filter :require_user
+      before_filter :require_user
       skip_before_filter :verify_authenticity_token
 
       def set_cache_buster

@@ -1,6 +1,6 @@
 @BitReturn.module "MiningCalcApp", (MiningCalcApp, App, Backbone, Marionette, $, _) ->
 
-  class MiningCalcApp.EditAssetView extends Marionette.ItemView
+  class MiningCalcApp.EditAssetView extends App.Views.ItemView
     template: "mining_calc/templates/edit_asset_view"
     onRender: ->
       #@$('.selectpicker').selectpicker()

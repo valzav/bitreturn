@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :accounts, :dependent => :destroy
   has_many :assets
+  has_one :market_env
 
   attr_accessible :name, :first_name, :last_name, :email, :address_1, :address_2, :city, :state, :zip, :country
   attr_accessible :website_name, :website_url, :nickname, :password, :password_confirmation, :single_access_token, :active
@@ -8,12 +9,11 @@ class User < ActiveRecord::Base
 
   #AUTH_PROVIDERS = ['etsy'] #['etsy', 'facebook', 'google', 'twitter']
 
-  acts_as_authentic
-  #do |c|
-  #  c.validate_login_field = false
-  #  c.validate_email_field = true
-  #  c.validate_password_field = true
-  #end
+  acts_as_authentic do |c|
+    c.validate_login_field = false
+    c.validate_email_field = false
+    c.validate_password_field = false
+  end
 
   def self.get_user_for_login_via_omniauth(omniauth, current_user)
     account = Account.find_or_create_from_omniauth(omniauth)

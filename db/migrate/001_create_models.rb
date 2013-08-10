@@ -11,10 +11,9 @@ class CreateModels < ActiveRecord::Migration
     add_index 'bitcoin_blocks', 'block_number'
 
     create_table :dif_models do |t|
-
+      t.integer 'user_id'
       t.timestamps
     end
-
 
     create_table :miners do |t|
       t.integer 'user_id'
@@ -61,10 +60,13 @@ class CreateModels < ActiveRecord::Migration
       t.float 'usd_btc_rate'
       t.float 'power_cost'
       t.float 'pool_fee'
+      t.integer 'monthly_growth'
+      t.integer 'investment_horizon'
       t.timestamps
     end
 
     create_table :analysis_results do |t|
+      t.integer 'user_id'
       t.float :power_cost
       t.float :pool_fee
       t.float :gross_income

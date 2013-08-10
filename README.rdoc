@@ -3,11 +3,13 @@
 
 TODO:
 
-- use RailsMoney instead of btc_price
-- add assets
+- move content of DifModel to MarketEnv
+- remove DifModel model
 - add benchmark
-- add results
-- add results chart
++ use RailsMoney instead of btc_price
++ add assets
++ add results
++ add results chart
 
 + add investment horizon selector
 + show current speed, difficulty and exchange rate

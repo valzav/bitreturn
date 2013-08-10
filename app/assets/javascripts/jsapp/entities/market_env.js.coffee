@@ -1,9 +1,10 @@
 @BitReturn.module "Entities", (Entities, App, Backbone, Marionette, $, _) ->
 
-  class Entities.DifModel extends Backbone.Model
+  class Entities.MarketEnv extends Backbone.Model
     urlRoot: ->
-      '/dif_models'
+      '/market_envs'
     toJSON: ->
+      id: @attributes.id
       monthly_growth: @attributes.monthly_growth
       investment_horizon: @attributes.investment_horizon
       usd_btc_rate: @attributes.usd_btc_rate

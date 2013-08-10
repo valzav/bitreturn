@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 1) do
   add_index "accounts", ["user_id", "platform_id", "fbapp_id"], :name => "index_accounts_on_user_id_and_platform_id_and_fbapp_id"
 
   create_table "analysis_results", :force => true do |t|
+    t.integer  "user_id"
     t.float    "power_cost"
     t.float    "pool_fee"
     t.float    "gross_income"
@@ -76,6 +77,7 @@ ActiveRecord::Schema.define(:version => 1) do
   add_index "bitcoin_blocks", ["block_number"], :name => "index_bitcoin_blocks_on_block_number"
 
   create_table "dif_models", :force => true do |t|
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -86,8 +88,10 @@ ActiveRecord::Schema.define(:version => 1) do
     t.float    "usd_btc_rate"
     t.float    "power_cost"
     t.float    "pool_fee"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "monthly_growth"
+    t.integer  "investment_horizon"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "miners", :force => true do |t|

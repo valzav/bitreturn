@@ -5,33 +5,25 @@ class WelcomeController < ApplicationController
   respond_to :html, :js
 
   def index
-
-    dm = DifModel.new(monthly_growth: 40, investment_horizon: 6)
-    dm.forecast!
+    market = MarketEnv.new(monthly_growth: 40, investment_horizon: 6)
+    market.forecast!
     assets = Asset.all
     asset = assets.first
     asset.effective_date = Date.today
+    result = asset.analyze(market.model.blocks, market, market.model.horizon_date)
 
-    market = MarketEnv.new ({
-      usd_btc_rate: MarketEnv.get_usd_btc_rate,
-      power_cost: 0.15 / MarketEnv.get_usd_btc_rate,
-      pool_fee: 0.02,
-    })
-
-    result = asset.analyze(dm.model.blocks, market, dm.model.horizon_date)
-
-    gon.user = 'vz'
+    gon.user = (current_user || login_anonymous_user).serializer
     gon.miners = Miner.all.map { |m| m.serializer }
     gon.assets = assets.map { |m| m.serializer }
-    gon.dm = dm.serializer
+    gon.market = market.serializer
     gon.result = result.serializer
     render :index, layout: 'jsapp'
   end
 
   def blocks
-    dm = DifModel.new(monthly_growth: 40, investment_horizon: 6)
-    dm.forecast!
-    gon.dm = dm.serializer
+    market = MarketEnv.new(monthly_growth: 40, investment_horizon: 6)
+    market.forecast!
+    gon.market = market.serializer
   end
 
   def flatui

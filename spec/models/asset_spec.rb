@@ -22,7 +22,7 @@ describe Asset do
     MarketEnv.create ({
       usd_btc_rate: MarketEnv.get_usd_btc_rate,
       power_cost: 0.15 / MarketEnv.get_usd_btc_rate,
-      pool_fee: 0.02,
+      pool_fee: 0.02
     })
   end
 

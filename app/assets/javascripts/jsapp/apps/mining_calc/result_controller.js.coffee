@@ -21,6 +21,5 @@
       @model = new App.Entities.AnalysisResult(gon.result)
       @view = new MiningCalcApp.ResultView model: @model
       @view.on 'show', ->
-        console.log '-----ResultView show'
         doPlot(@model)
       App.resultRegion.show @view

@@ -152,4 +152,13 @@ class ApplicationController < ActionController::Base
     class_name.classify.constantize.find(id)
   end
 
+  def login_anonymous_user
+    user = User.create(active: true)
+    @user_session = UserSession.new
+    @user_session.credentials = [user, true]
+    @user_session.save
+    @current_user = @user_session.user
+  end
+
+
 end

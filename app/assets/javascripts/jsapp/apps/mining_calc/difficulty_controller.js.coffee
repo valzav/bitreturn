@@ -6,21 +6,21 @@
   difficultyFormatter = (v, axis) ->
       v.toFixed(axis.tickDecimals) + " (M)"
 
-  doPlot = (dm) ->
+  doPlot = (market) ->
     $.plot "#difficulty_chart", [
-      data: dm.get('data_hashes')
+      data: market.get('data_hashes')
       label: "Network Speed (Thash/s)"
       yaxis: 1
     ,
-      data: dm.get('data_difficulty')
+      data: market.get('data_difficulty')
       label: "Difficulty (M)"
       yaxis: 2
     ,
-      data: dm.get('data_f_hashes')
+      data: market.get('data_f_hashes')
       label: "Network Speed Forecast (Thash/s)"
       yaxis: 1
     ,
-      data: dm.get('data_f_difficulty')
+      data: market.get('data_f_difficulty')
       label: "Difficulty Forecast (M)"
       yaxis: 2
     ],
@@ -43,15 +43,15 @@
   MiningCalcApp.DifficultyController =
 
     show: ->
-      @model = new App.Entities.DifModel(gon.dm)
-      @model.on 'change', @difModelChanged
+      @model = new App.Entities.MarketEnv(gon.market)
+      @model.on 'change', @marketChanged
       @view = new MiningCalcApp.DifficultyView model: @model
       @view.on 'show', ->
         $('#investment_horizon').selectpicker()
         doPlot(@model)
       App.difficultyRegion.show @view
 
-    difModelChanged: ->
+    marketChanged: ->
       #console.log "difModelChanged monthly_growth:#{@get('monthly_growth')}  investment_horizon:#{@get('investment_horizon')}"
       unless window.model_is_saving
         window.save_model @, null, (model) ->
