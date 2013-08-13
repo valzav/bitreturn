@@ -1,19 +1,32 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3>Edit Asset</h3>
+    <% if @id: %>
+        <h3>Edit Asset</h3>
+    <% else: %>
+        <h3>New Asset</h3>
+    <% end %>
 </div>
 <div class="modal-body">
     <div class="form-horizontal">
+        <% unless @id: %>
         <div class="control-group">
             <label class="control-label" for="select_miner">Miner</label>
             <div class="controls">
                 <select id="select_miner" class="" name="select-miner">
+                    <option value="-1">Select your hardware</option>
                     <% for m in BitReturn.miners.models: %>
                     <option value="<%= m.id %>"
                     <%= if m.id == @assetable_id then 'selected="true"' else '' %> >
                     <%= m.get('name') %>  </option>
                     <% end %>
                 </select>
+            </div>
+        </div>
+        <% end %>
+        <div class="control-group">
+            <label class="control-label" for="name">Name</label>
+            <div class="controls">
+                <input id="name" type="text" name="name" class="span3" value="<%= @name %>">
             </div>
         </div>
         <div class="control-group">
@@ -40,14 +53,14 @@
                 <input id="power_use_watt" type="text" name="power_use_watt" class="span1" value="<%= @power_use_watt %>">
             </div>
         </div>
+        <!--<div class="control-group">-->
+            <!--<label class="control-label" for="purchase_date">Purchase Date</label>-->
+            <!--<div class="controls">-->
+                <!--<input id="purchase_date" type="text" name="purchase_date" class="span2 datepicker" value="<%= @purchase_date %>">-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="control-group">
-            <label class="control-label" for="purchase_date">Purchase Date</label>
-            <div class="controls">
-                <input id="purchase_date" type="text" name="purchase_date" class="span2 datepicker" value="<%= @purchase_date %>">
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="effective_date">Mining Begin Date</label>
+            <label class="control-label" for="effective_date">Initial Mining Date</label>
             <div class="controls">
                 <input id="effective_date" type="text" name="effective_date" class="span2 datepicker" value="<%= @effective_date %>">
             </div>

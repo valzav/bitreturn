@@ -10,4 +10,4 @@
       '/miners'
 
   App.reqres.setHandler "entities:miners", ->
-    new App.Entities.Miners(gon.miners)
+    window.bit_return_miners ?= new App.Entities.Miners(gon.miners)

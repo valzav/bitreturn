@@ -6,7 +6,7 @@ class WelcomeController < ApplicationController
 
   def index
     user = current_user || login_anonymous_user
-    market =  user.market_env || MarketEnv.new(monthly_growth: 40, investment_horizon: 6)
+    market =  user.market_env || MarketEnv.new(monthly_growth: 60, investment_horizon: 6)
     market.forecast!
     assets = Asset.all
     asset = assets.first

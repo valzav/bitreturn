@@ -9,6 +9,15 @@
       effective_date: $.datepicker.formatDate("mm/dd/yy", in_a_week)
     urlRoot: ->
       '/assets'
+    populateFromMiner: (miner)->
+      m = miner.toJSON()
+      @set
+        name: m.name
+        price_display: m.price_display
+        ghps: m.ghps
+        power_use_watt: m.power_use_watt
+        quantity: 1
+        assetable_id: m.id
 
   class Entities.Assets extends Entities.Collection
     model: Entities.Asset
@@ -19,6 +28,4 @@
     new Entities.Asset
 
   App.reqres.setHandler "assets:entities", ->
-    window.assets ?=  new App.Entities.Assets(gon.assets)
-    window.assets
-
+    window.bit_return_assets ?= new App.Entities.Assets(gon.assets)

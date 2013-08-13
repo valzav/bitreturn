@@ -9,6 +9,13 @@ User.create!({
                active: true
              })
 
+Miner.create!({
+                name: 'Custom',
+                currency: 'BTC',
+                price: 0.0,
+                ghps: 0,
+                power_use_watt: 0,
+              })
 
 miner = Miner.create!({
                 name: 'ASICMiner Block Erupter USB',
