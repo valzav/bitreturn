@@ -24,8 +24,10 @@
       #@coupon = new Entities.Coupon(gon.coupon)
 
   App.vent.on "asset:edit:clicked", (asset) ->
-    console.log 'asset:edit:clicked'
-    API.edit asset
+    API.edit(asset)
+
+  App.vent.on "asset:new:clicked", ->
+    API.edit(null)
 
   App.on "initialize:after", (options)->
     #@navigate('new', trigger: true) if @getCurrentRoute() is ''

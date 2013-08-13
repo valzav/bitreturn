@@ -7,7 +7,15 @@ class MarketEnv < ActiveRecord::Base
 
   def self.get_usd_btc_rate
     ticker_url = 'http://data.mtgox.com/api/1/BTCUSD/ticker_fast'
-    json = JSON.parse(open(ticker_url).read)
+    unless @curl
+      @curl = Curl::Easy.new
+      @curl.follow_location = true
+      @curl.max_redirects = 3
+      @curl.useragent = 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.2) Gecko/20090729 Firefox/3.5.2 GTB5'
+    end
+    @curl.url = ticker_url
+    @curl.perform
+    json = JSON.parse(@curl.body_str)
     return json['return']['last_local']['value'].to_f
   end
 

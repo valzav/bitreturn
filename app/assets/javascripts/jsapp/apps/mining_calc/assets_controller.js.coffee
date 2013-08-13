@@ -3,7 +3,7 @@
   MiningCalcApp.AssetsController =
 
     show: ->
-      assets = new App.Entities.Assets(gon.assets)
+      assets = App.request "assets:entities"
       @layout = new MiningCalcApp.AssetsLayout
       @layout.on 'show', =>
         console.log 'AssetsLayout on show'
@@ -14,7 +14,9 @@
     showMinersRegion: (assets) ->
       view = new MiningCalcApp.AssetsListView collection: assets
       view.on "add_asset:button:clicked", =>
-        assets.add(new App.Entities.Asset)
+        #assets.add(new App.Entities.Asset)
+        App.vent.trigger "asset:edit:clicked"
+
       view.on "childview:asset:delete:clicked", (child, args) ->
         model = args.model
         #model.destroy()

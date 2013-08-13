@@ -3,14 +3,22 @@
   today = new Date()
   in_a_week = new Date(today.getTime() + (7 * 24 * 60 * 60 * 1000))
 
-  class Entities.Asset extends Backbone.Model
+  class Entities.Asset extends Entities.Model
     defaults:
       purchase_date: $.datepicker.formatDate("mm/dd/yy", today)
       effective_date: $.datepicker.formatDate("mm/dd/yy", in_a_week)
     urlRoot: ->
       '/assets'
 
-  class Entities.Assets extends Backbone.Collection
+  class Entities.Assets extends Entities.Collection
     model: Entities.Asset
     url: ->
       '/assets'
+
+  App.reqres.setHandler "new:asset:entity", ->
+    new Entities.Asset
+
+  App.reqres.setHandler "assets:entities", ->
+    window.assets ?=  new App.Entities.Assets(gon.assets)
+    window.assets
+

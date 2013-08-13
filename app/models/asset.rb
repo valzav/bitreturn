@@ -5,7 +5,7 @@ class Asset < ActiveRecord::Base
   belongs_to :user
   belongs_to :assetable, polymorphic: true
   attr_accessible :name, :assetable, :quantity, :purchase_date, :effective_date
-  attr_accessible :currency, :price, :ghps, :power_use_watt
+  attr_accessible :user, :currency, :price, :ghps, :power_use_watt
 
   monetize :price_cents
 
