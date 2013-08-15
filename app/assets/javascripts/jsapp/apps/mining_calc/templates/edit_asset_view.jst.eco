@@ -12,7 +12,7 @@
         <div class="control-group">
             <label class="control-label" for="select_miner">Miner</label>
             <div class="controls">
-                <select id="select_miner" class="" name="select-miner">
+                <select id="select_miner" class="span4" name="select-miner">
                     <option value="-1">Select your hardware</option>
                     <% for m in BitReturn.miners.models: %>
                     <option value="<%= m.id %>"
@@ -26,13 +26,17 @@
         <div class="control-group">
             <label class="control-label" for="name">Name</label>
             <div class="controls">
-                <input id="name" type="text" name="name" class="span3" value="<%= @name %>">
+                <input id="name" type="text" name="name" class="span4" value="<%= @name %>">
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="price">Price</label>
             <div class="controls">
-                <input id="price" type="text" name="price" class="span1" value="<%= @price_display %>">
+                <input id="price" type="text" name="price" class="span1" value="<%= @price %>">
+                <select id="currency" class="currency" name="currency">
+                    <option value="BTC" <%= if @currency=='BTC' then 'selected="true"' else '' %> >BTC</option>
+                    <option value="USD" <%= if @currency=='USD' then 'selected="true"' else '' %> >USD</option>
+                </select>
             </div>
         </div>
         <div class="control-group">

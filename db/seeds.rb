@@ -2,12 +2,12 @@ Platform.create name: 'Facebook', make: 'facebook'
 Platform.create name: 'Google+', make: 'google'
 Platform.create name: 'Twitter', make: 'twitter'
 
-User.create!({
-               email: 'user@example.com',
-               password: '123456',
-               #password_confirmation: '123456',
-               active: true
-             })
+#User.create!({
+#               email: 'user@example.com',
+#               password: '123456',
+#               #password_confirmation: '123456',
+#               active: true
+#             })
 
 Miner.create!({
                 name: 'Custom',
@@ -17,10 +17,10 @@ Miner.create!({
                 power_use_watt: 0,
               })
 
-miner = Miner.create!({
+Miner.create!({
                 name: 'ASICMiner Block Erupter USB',
                 currency: 'BTC',
-                price: 0.55,
+                price: 0.35,
                 ghps: 0.3,
                 power_use_watt: 3,
                 availability: 'Now',
@@ -200,12 +200,3 @@ Miner.create!({
                 country_of_origin: 'US'
               })
 
-Asset.create!({
-                name: miner.name,
-                assetable: miner,
-                quantity: 10,
-                currency: miner.currency,
-                price: miner.price,
-                ghps: miner.ghps,
-                power_use_watt: miner.power_use_watt
-              })

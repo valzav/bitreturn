@@ -8,6 +8,13 @@
   <%= csrf_meta_tags %>
   <%= @og.facebook_og_metas.html_safe if @og %>
   <%= @og.twitter_card_metas.html_safe if @og %>
+  <!--[if lt IE 9]>
+    <script type="text/javascript">
+    var html5 = { 'elements': 'abbr article aside audio bdi data datalist details figcaption figure footer header hgroup mark meter nav output progress section summary time video' };
+    </script>
+    <%= javascript_include_tag "vendor/html5shiv.js" %>
+    <%= javascript_include_tag "vendor/excanvas.min" %>
+  <![endif]-->
   <%= javascript_include_tag "jsapp/loader" %>
   <%= stylesheet_link_tag "jsapp/app", :media => "all" %>
   <%= stylesheet_link_tag "vendor/font-awesome", :media => "all" %>

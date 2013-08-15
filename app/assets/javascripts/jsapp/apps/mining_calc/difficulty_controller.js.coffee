@@ -52,7 +52,6 @@
       App.difficultyRegion.show @view
 
     marketChanged: ->
-      #console.log "difModelChanged monthly_growth:#{@get('monthly_growth')}  investment_horizon:#{@get('investment_horizon')}"
       unless window.model_is_saving
         window.save_model @, null, (model) ->
           doPlot(model)

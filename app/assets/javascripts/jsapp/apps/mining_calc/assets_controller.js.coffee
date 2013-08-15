@@ -6,7 +6,6 @@
       assets = App.request "assets:entities"
       @layout = new MiningCalcApp.AssetsLayout
       @layout.on 'show', =>
-        console.log 'AssetsLayout on show'
         @showMinersRegion assets
       App.assetsRegion.show @layout
 
@@ -19,8 +18,7 @@
 
       view.on "childview:asset:delete:clicked", (child, args) ->
         model = args.model
-        #model.destroy()
-        assets.remove(model)
+        model.destroy() if confirm "Are you sure you want to delete #{model.get("name")}?"
       view.on "childview:asset:edit:clicked", (child, args) ->
         App.vent.trigger "asset:edit:clicked", args.model
       @layout.minersRegion.show view

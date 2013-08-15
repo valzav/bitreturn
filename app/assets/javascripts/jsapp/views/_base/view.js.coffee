@@ -14,7 +14,7 @@
 				@[key] = val
 	
 		remove: (args...) ->
-			console.log "removing", @
+			console?.log "removing", @
 			if @model?.isDestroyed?()
 				
 				wrapper = @$el.toggleWrapper

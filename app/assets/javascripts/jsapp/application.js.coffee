@@ -23,4 +23,4 @@
   App
 
 $(document).ready ->
-  console.log 'document ready'
+  #console.log 'document ready'

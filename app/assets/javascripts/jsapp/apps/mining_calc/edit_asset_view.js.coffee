@@ -6,6 +6,10 @@
       'change #select_miner' : 'minerSelected'
     modelEvents:
       'change' : 'render'
+    form:
+      buttons:
+        primary: 'Update Asset'
+        primary_new: 'Add Asset'
     onRender: ->
       #@$('.selectpicker').selectpicker()
       @$('.datepicker').datepicker
@@ -18,4 +22,3 @@
       miner = miners.get(e.target.value)
       return unless miner
       @model.populateFromMiner(miner)
-      console.log 'minerSelected', @model

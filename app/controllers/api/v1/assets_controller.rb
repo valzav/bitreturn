@@ -11,10 +11,15 @@ class Api::V1::AssetsController < ApplicationController
   end
 
   def update
-    asset = Asset.find(params[:id])
+    asset = current_user.assets.find(params[:id])
     asset.update_attributes(params[:asset])
     render json: asset, status: :ok, root: false
   end
 
+  def destroy
+    asset = current_user.assets.find(params[:id])
+    asset.destroy
+    head :no_content
+  end
 
 end

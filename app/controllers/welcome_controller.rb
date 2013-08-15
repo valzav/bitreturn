@@ -6,9 +6,9 @@ class WelcomeController < ApplicationController
 
   def index
     user = current_user || login_anonymous_user
-    market =  user.market_env || MarketEnv.new(monthly_growth: 60, investment_horizon: 6)
+    market =  user.market_env
     market.forecast!
-    assets = Asset.all
+    assets = user.assets
     asset = assets.first
     asset.effective_date = Date.today
     result = asset.analyze(market.model.blocks, market, market.model.horizon_date)

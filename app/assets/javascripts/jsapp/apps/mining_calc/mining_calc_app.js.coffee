@@ -20,8 +20,8 @@
     new MiningCalcApp.Router controller: API
     App.addInitializer ->
       console?.log "Initializing MiningCalcApp"
-      #Entities = App.module('Entities')
-      #@coupon = new Entities.Coupon(gon.coupon)
+  #Entities = App.module('Entities')
+  #@coupon = new Entities.Coupon(gon.coupon)
 
   App.vent.on "asset:edit:clicked", (asset) ->
     API.edit(asset)

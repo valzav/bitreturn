@@ -10,6 +10,8 @@
     template: "mining_calc/asset_view"
     tagName: "tr"
     className: "asset"
+    modelEvents:
+      "change" : "render"
     triggers:
       "click a.delete": "asset:delete:clicked"
       "click a.edit": "asset:edit:clicked"

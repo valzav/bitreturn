@@ -6,8 +6,8 @@
         <th>Price</th>
         <th>Hash&nbsp;Rate&nbsp;(Gh/s)</th>
         <th>Power&nbsp;Use&nbsp;(Watt)</th>
-        <th>Purchased&nbsp;On</th>
-        <th>Mining&nbsp;Started</th>
+        <!--<th>Purchased&nbsp;On</th>-->
+        <th>Initial&nbsp;Mining&nbsp;Date</th>
         <th>Quantity</th>
         <th></th>
     </tr>

@@ -13,6 +13,8 @@
       m = miner.toJSON()
       @set
         name: m.name
+        price: m.price
+        currency: m.currency
         price_display: m.price_display
         ghps: m.ghps
         power_use_watt: m.power_use_watt

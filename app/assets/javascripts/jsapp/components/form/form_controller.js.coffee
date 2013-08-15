@@ -19,16 +19,14 @@
       @formLayout.trigger 'dialog:close'
       model = @contentView.model
       collection = @contentView.collection
-      console.log '----- formSubmit', collection
       @processFormSubmit data, model, collection
 
     processFormSubmit: (data, model, collection) ->
-      console.log '----- processFormSubmit'
       model.save data,
         collection: collection
 
     onClose: ->
-      console.log "onClose", @
+      #console.log "onClose", @
 
     formContentRegion: ->
       @region = @formLayout.formContentRegion

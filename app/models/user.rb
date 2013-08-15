@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :accounts, :dependent => :destroy
+  #has_many :accounts, :dependent => :destroy
   has_many :assets
   has_one :market_env
 
@@ -13,6 +13,21 @@ class User < ActiveRecord::Base
     c.validate_login_field = false
     c.validate_email_field = false
     c.validate_password_field = false
+  end
+
+  def initialize(attributes = nil, options = {})
+    super
+    miner = Miner.where(name: 'ASICMiner Block Erupter USB').first
+    self.assets.new({
+                          name: miner.name,
+                          assetable: miner,
+                          quantity: 10,
+                          currency: miner.currency,
+                          price: miner.price,
+                          ghps: miner.ghps,
+                          power_use_watt: miner.power_use_watt
+                        })
+    self.market_env = MarketEnv.new(monthly_growth: 60, investment_horizon: 6)
   end
 
   def self.get_user_for_login_via_omniauth(omniauth, current_user)
@@ -96,7 +111,7 @@ class User < ActiveRecord::Base
 
   def facebook_account
     accounts.where(provider: 'facebook').first ||
-    nil
+      nil
   end
 
 end

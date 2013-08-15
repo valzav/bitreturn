@@ -29,6 +29,7 @@ class MarketEnv < ActiveRecord::Base
   def forecast!
     @model = BitcoinDifficultyModel.new
     blocks_data = Bitcoin::Block.select('block_date, block_time, ghps, difficulty').where("block_time>'2013-01-01'").order('id')
+    raise "No blocks found\nPlease run\nrake daemon:updater" if blocks_data.empty?
     blocks_data.each do |b|
       @model.add_block(b.block_date, b.block_time, b.difficulty, b.ghps)
     end
