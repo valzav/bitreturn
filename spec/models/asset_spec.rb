@@ -5,7 +5,7 @@ require Rails.root.join('lib/bitcoin_difficulty_model.rb').to_s
 
 describe Asset do
 
-  let(:mining_asset) do
+  let(:miner1) do
     Asset.create ({
       name: 'BFL Jalapeno 7 Gh/s',
       quantity: 1,
@@ -13,6 +13,19 @@ describe Asset do
       price: 240,
       ghps: 7,
       power_use_watt: 30,
+      purchase_date: Date.parse('2013-09-01'),
+      effective_date: Date.parse('2013-09-01')
+    })
+  end
+
+  let(:miner2) do
+    Asset.create ({
+      name: 'Butterfly Labs 25 GH/s SC',
+      quantity: 1,
+      currency: 'USD',
+      price: 1249,
+      ghps: 25,
+      power_use_watt: 150,
       purchase_date: Date.parse('2013-09-01'),
       effective_date: Date.parse('2013-09-01')
     })
@@ -26,15 +39,29 @@ describe Asset do
     })
   end
 
-  it 'should be able to analyze mining asset' do
-    MarketEnv.stub(:get_usd_btc_rate){ 100.0 }
+  #it 'should be able to analyze mining asset' do
+  #  MarketEnv.stub(:get_usd_btc_rate){ 100.0 }
+  #  end_date = Date.parse('2014-08-17')
+  #  blocks = load_yaml('blocks_forecast.yml').map{|b| OpenStruct.new(b) }
+  #  result = miner1.analyze(blocks, market_env, end_date)
+  #  puts result.inspect
+  #  result.power_cost.should be_within(0.01).of(0.34)
+  #  result.pool_fee.should be_within(0.01).of(0.13)
+  #  result.roi.should be_within(0.001).of(1.736)
+  #end
+
+  it 'should be able to combine results' do
+    MarketEnv.stub(:get_usd_btc_rate) { 100.0 }
     end_date = Date.parse('2014-08-17')
-    blocks = load_yaml('blocks_forecast.yml').map{|b| OpenStruct.new(b) }
-    result = mining_asset.analyze(blocks, market_env, end_date)
-    puts result.inspect
-    result.power_cost.should be_within(0.01).of(0.34)
-    result.pool_fee.should be_within(0.01).of(0.13)
-    result.roi.should be_within(0.001).of(1.736)
+    blocks = load_yaml('blocks_forecast.yml').map { |b| OpenStruct.new(b) }
+    result1 = miner1.analyze(blocks, market_env, end_date)
+    result2 = miner2.analyze(blocks, market_env, end_date)
+    puts result1.inspect
+    #puts result2.inspect
+    Asset.combine_results([result1,result2])
+    #result.power_cost.should be_within(0.01).of(0.34)
+    #result.pool_fee.should be_within(0.01).of(0.13)
+    #result.roi.should be_within(0.001).of(1.736)
   end
 
   it 'should be able to analyze bond' do

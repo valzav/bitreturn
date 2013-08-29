@@ -44,9 +44,10 @@ ActiveRecord::Schema.define(:version => 1) do
     t.float    "net_income"
     t.float    "roi"
     t.float    "expenses"
+    t.float    "asset_btc_price"
     t.text     "cashflows"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "assets", :force => true do |t|

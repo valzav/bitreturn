@@ -17,8 +17,8 @@
 
   MiningCalcApp.ResultController =
 
-    show: ->
-      @model = new App.Entities.AnalysisResult(gon.result)
+    show: (result)->
+      @model = result
       @view = new MiningCalcApp.ResultView model: @model
       @view.on 'show', ->
         doPlot(@model)

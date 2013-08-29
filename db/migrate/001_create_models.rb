@@ -73,6 +73,7 @@ class CreateModels < ActiveRecord::Migration
       t.float :net_income
       t.float :roi
       t.float :expenses
+      t.float :asset_btc_price
       t.text :cashflows
       t.timestamps
     end

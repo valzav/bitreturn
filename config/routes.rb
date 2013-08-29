@@ -15,6 +15,7 @@ Monetizer::Application.routes.draw do
       resources :market_envs
       resources :miners
       resources :assets
+      resources :analysis_results
     end
   end
 

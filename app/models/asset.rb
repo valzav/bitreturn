@@ -23,6 +23,35 @@ class Asset < ActiveRecord::Base
     Asset.analyze_miner(self, blocks, market_env, end_date)
   end
 
+  def self.combine_results(results)
+    sum = AnalysisResult.new
+    sum.power_cost = 0.0
+    sum.pool_fee = 0.0
+    sum.gross_income = 0.0
+    sum.expenses = 0.0
+    sum.net_income = 0.0
+    sum.asset_btc_price = 0.0
+
+    cashflows = Hash.new(0.0)
+    results.each do |r|
+      sum.power_cost += r.power_cost
+      sum.pool_fee += r.pool_fee
+      sum.gross_income += r.gross_income
+      sum.expenses += r.expenses
+      sum.net_income += r.net_income
+      sum.asset_btc_price += r.asset_btc_price
+      r.cashflows.each {|d,v| cashflows[d] += v }
+    end
+    sum.cashflows = cashflows.sort{|e|e[0]}
+    if sum.asset_btc_price > 0.0
+      sum.roi = (sum.net_income - sum.asset_btc_price) / sum.asset_btc_price
+    else
+      sum.roi = 0.0
+    end
+    #p sum
+    sum
+  end
+
   def self.analyze_miner(asset, blocks, market_env, end_date)
     btc_sum = 0.0
     pool_fee_btc = 0.0
@@ -39,7 +68,7 @@ class Asset < ActiveRecord::Base
       btc_sum += btc_per_24h
       power_cost += asset.power_use_watt * 24 * market_env.power_cost / 1000.0
       pool_fee_btc += btc_per_24h * market_env.pool_fee
-      cashflow << [b.date.to_s(:number), (btc_sum - power_cost - pool_fee_btc).round(3)]
+      cashflow << [b.date.to_s(:number).to_i, (btc_sum - power_cost - pool_fee_btc).round(3)]
       #puts "#{b[:date]} difficulty: #{b[:difficulty]} #{time_per_block} #{btc_per_24h}"
       #puts "btc_sum: #{btc_sum}, power_used: #{power_used}, pool_fee_btc: #{pool_fee_btc}"
     end
@@ -50,6 +79,7 @@ class Asset < ActiveRecord::Base
     result.expenses = result.power_cost - result.pool_fee
     result.net_income = result.gross_income - result.expenses
     result.roi = (result.net_income - asset.btc_price) / asset.btc_price
+    result.asset_btc_price = asset.btc_price
     result.cashflows = cashflow
     return result
   end

@@ -8,16 +8,17 @@ class WelcomeController < ApplicationController
     user = current_user || login_anonymous_user
     market =  user.market_env
     market.forecast!
-    assets = user.assets
-    asset = assets.first
-    asset.effective_date = Date.today
-    result = asset.analyze(market.model.blocks, market, market.model.horizon_date)
-
+    results = []
+    user.assets.each do |a|
+      a.effective_date = Date.today
+      results << a.analyze(market.model.blocks, market, market.model.horizon_date)
+    end
+    sum = Asset.combine_results(results)
     gon.user = user.serializer
     gon.miners = Miner.all.map { |m| m.serializer }
-    gon.assets = assets.map { |m| m.serializer }
+    gon.assets = user.assets.map { |a| a.serializer }
     gon.market = market.serializer
-    gon.result = result.serializer
+    gon.result = sum.serializer
     render :index, layout: 'jsapp'
   end
 
