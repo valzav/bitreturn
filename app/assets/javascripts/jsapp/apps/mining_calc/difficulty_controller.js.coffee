@@ -55,4 +55,5 @@
       unless window.model_is_saving
         window.save_model @, null, (model) ->
           doPlot(model)
+          App.vent.trigger "market:changed", model
 

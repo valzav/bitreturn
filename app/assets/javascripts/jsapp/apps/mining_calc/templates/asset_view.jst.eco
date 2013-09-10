@@ -4,7 +4,7 @@
 <td><%= @power_use_watt %></td>
 <!--<td><%= @purchase_date %></td>-->
 <td><%= @effective_date %></td>
-<td><%= @quantity %></td>
+<!--<td><%= @quantity %></td>-->
 <td class="controls">
     <a href="#" class="edit"><i class="icon-edit"></i></a>
     <a href="#" class="delete"><i class="icon-remove"></i></a>

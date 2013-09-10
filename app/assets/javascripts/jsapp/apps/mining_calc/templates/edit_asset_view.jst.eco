@@ -39,12 +39,12 @@
                 </select>
             </div>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="quantity">Quantity</label>
-            <div class="controls">
-                <input id="quantity" type="text" name="quantity" class="span1" value="<%= @quantity %>">
-            </div>
-        </div>
+        <!--<div class="control-group">-->
+            <!--<label class="control-label" for="quantity">Quantity</label>-->
+            <!--<div class="controls">-->
+                <!--<input id="quantity" type="text" name="quantity" class="span1" value="<%#= @quantity %>">-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="control-group">
             <label class="control-label" for="ghps">Hash Rate (Gh/s)</label>
             <div class="controls">
