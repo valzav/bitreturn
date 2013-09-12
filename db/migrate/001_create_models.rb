@@ -67,6 +67,7 @@ class CreateModels < ActiveRecord::Migration
 
     create_table :analysis_results do |t|
       t.integer 'user_id'
+      t.integer 'asset_id'
       t.float :power_cost
       t.float :pool_fee
       t.float :gross_income

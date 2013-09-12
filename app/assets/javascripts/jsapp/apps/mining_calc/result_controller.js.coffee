@@ -1,8 +1,8 @@
 @BitReturn.module "MiningCalcApp", (MiningCalcApp, App, Backbone, Marionette, $, _) ->
 
-  doPlot = (result) ->
+  doPlot = (cashflows) ->
     $.plot "#result_chart", [
-      data: result.get('cashflows')
+      data: cashflows
       label: "Cashflow"
       yaxis: 1
     ],
@@ -21,5 +21,8 @@
       @model = result
       @view = new MiningCalcApp.ResultView model: @model
       @view.on 'show', ->
-        doPlot(@model)
+        doPlot(@model.get('cashflows'))
+      @view.on 'current:ar:changed', (r) ->
+        cashflows = if r then r.cashflows else @model.get('cashflows')
+        doPlot(cashflows)
       App.resultRegion.show @view

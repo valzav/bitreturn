@@ -4,6 +4,7 @@ require 'json'
 class Asset < ActiveRecord::Base
   belongs_to :user
   belongs_to :assetable, polymorphic: true
+  has_one :analysis_result
   attr_accessible :name, :assetable, :quantity, :purchase_date, :effective_date
   attr_accessible :user, :currency, :price, :ghps, :power_use_watt
 
@@ -24,7 +25,7 @@ class Asset < ActiveRecord::Base
   end
 
   def self.combine_results(results)
-    sum = AnalysisResult.new
+    sum = AnalysisResult.new(asset_id: 0, asset_name: 'sum', ars: [])
     sum.power_cost = 0.0
     sum.pool_fee = 0.0
     sum.gross_income = 0.0
@@ -34,6 +35,7 @@ class Asset < ActiveRecord::Base
 
     cashflows = Hash.new(0.0)
     results.each do |r|
+      sum.ars << r
       sum.power_cost += r.power_cost
       sum.pool_fee += r.pool_fee
       sum.gross_income += r.gross_income
@@ -72,7 +74,7 @@ class Asset < ActiveRecord::Base
       #puts "#{b[:date]} difficulty: #{b[:difficulty]} #{time_per_block} #{btc_per_24h}"
       #puts "btc_sum: #{btc_sum}, power_used: #{power_used}, pool_fee_btc: #{pool_fee_btc}"
     end
-    result = AnalysisResult.new
+    result = AnalysisResult.new(asset_id: asset.id, asset_name: asset.name)
     result.power_cost = power_cost
     result.pool_fee = pool_fee_btc
     result.gross_income = btc_sum

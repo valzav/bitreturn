@@ -1,3 +1,4 @@
+<% console.log @ars %>
 <h4>Results</h4>
 <div class="row">
     <div class="span4">
@@ -13,7 +14,30 @@
     <div class="span4">&nbsp;</div>
 </div>
 <div class="row">
-    <div class="span12" id="result_chart" style="width: 900px; height: 400px;"></div>
+    <div class="span4">
+        <table class="table assets-results">
+            <tbody>
+            <tr>
+                <th>Asset</th>
+                <th>Cumulative<br/>Return</th>
+                <th>ROI %</th>
+            </tr>
+            <% for r in @ars: %>
+            <tr class="asset" data-asset-id="<%= r.asset_id %>">
+                <td><%= r.asset_name %></td>
+                <td>฿<%= r.net_income.toFixed(2) %></td>
+                <td><%= (r.roi * 100.0).toFixed(1) %></td>
+            </tr>
+            <% end %>
+            <tr class="asset active">
+                <td>TOTAL</td>
+                <td>฿<%= @net_income.toFixed(2) %></td>
+                <td><%= (@roi * 100.0).toFixed(1) %></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="span8" id="result_chart" style="width: 600px; height: 300px;"></div>
 </div>
 <br/>
 <br/>

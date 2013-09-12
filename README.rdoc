@@ -3,8 +3,9 @@
 
 TODO:
 
-- move content of DifModel to MarketEnv
-- remove DifModel model
+- display roi table (roi per asset)
++ move content of DifModel to MarketEnv
++ remove DifModel model
 - add benchmark
 + use RailsMoney instead of btc_price
 + add assets

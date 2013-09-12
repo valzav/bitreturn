@@ -34,3 +34,23 @@ table.assets {
     i { padding: 0 3px;}
   }
 }
+
+
+table.assets-results {
+  margin-top: 24px;
+  font-size: 80%;
+  td, th {
+    padding: 4px 8px;
+  }
+  tr.asset {
+    cursor: pointer;
+  }
+  tr.asset:hover {
+    background-color: #eee;
+  }
+  tr.active, tr.active:hover {
+    background-color: #1abc9c;
+    color: #fff;
+    font-weight: bold;
+  }
+}
