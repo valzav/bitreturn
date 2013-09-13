@@ -6,5 +6,5 @@
     get_ar: (asset_id) ->
       ars = @get('ars')
       for r in ars
-        return r if r.asset_id == asset_id
+        return new Entities.AnalysisResult(r) if r.asset_id == asset_id
       return null

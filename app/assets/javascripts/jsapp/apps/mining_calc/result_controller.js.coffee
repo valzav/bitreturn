@@ -17,12 +17,29 @@
 
   MiningCalcApp.ResultController =
 
-    show: (result)->
+    show: (result) ->
       @model = result
-      @view = new MiningCalcApp.ResultView model: @model
-      @view.on 'show', ->
-        doPlot(@model.get('cashflows'))
-      @view.on 'current:ar:changed', (r) ->
-        cashflows = if r then r.cashflows else @model.get('cashflows')
-        doPlot(cashflows)
-      App.resultRegion.show @view
+      @layout = new MiningCalcApp.ResultLayout
+      @layout.on 'show', =>
+        @showAssetsRegion(@model)
+        @showSummaryRegion(@model)
+        @showChartRegion(@model)
+      App.resultRegion.show @layout
+
+    showAssetsRegion: (model) ->
+      view = new MiningCalcApp.ResultAssetsListView model: model
+      view.on 'current:ar:changed', (r) =>
+        m = if r then r else model
+        @showSummaryRegion(m)
+        @showChartRegion(m)
+      @layout.assetsListRegion.show view
+
+    showSummaryRegion: (model) ->
+      view = new MiningCalcApp.ResultSummaryView model: model
+      @layout.summaryRegion.show view
+
+    showChartRegion: (model) ->
+      view = new MiningCalcApp.ResultChartView model: model
+      view.on 'show', ->
+        doPlot(model.get('cashflows'))
+      @layout.chartRegion.show view

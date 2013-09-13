@@ -1,0 +1,16 @@
+<h4>Results</h4>
+<div class="row">
+    <div class="span4">
+        <div id="result_assets_list_region">
+        </div>
+    </div>
+    <div class="span8">
+        <div id="result_summary_region">
+        </div>
+        <div id="result_chart_region">
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+<br/>
