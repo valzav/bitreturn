@@ -15,5 +15,5 @@
 </table>
 
 <button id="add_asset" class="btn btn-primary">
-    <i class="fui-plus-inverted"></i>Add
+    <i class="fui-plus-inverted"></i>Add Asset
 </button>

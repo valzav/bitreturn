@@ -6,7 +6,7 @@
 <td><%= @effective_date %></td>
 <!--<td><%= @quantity %></td>-->
 <td class="controls">
-    <a href="#" class="edit"><i class="icon-edit"></i></a>
-    <a href="#" class="delete"><i class="icon-remove"></i></a>
+    <a href="#" class="edit" title="Edit Asset"><i class="icon-edit"></i></a>
+    <a href="#" class="delete" title="Delete Asset"><i class="icon-remove"></i></a>
 </td>
 
