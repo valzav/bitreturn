@@ -9,7 +9,6 @@ module Api
         market.forecast!
         results = []
         current_user.assets.each do |a|
-          a.effective_date = Date.today
           results << a.analyze(market.model.blocks, market, market.model.horizon_date)
         end
         res = Asset.combine_results(results)

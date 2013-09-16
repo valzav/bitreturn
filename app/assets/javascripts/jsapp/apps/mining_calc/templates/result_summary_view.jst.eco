@@ -1,5 +1,5 @@
-<div class="result-summary">
-    Gross Income: ฿<%= @gross_income.toFixed(2) %>,
-    Pool Fee: ฿<%= @pool_fee.toFixed(2) %>,
+<p class="result-summary">
+    Gross Income: ฿<%= @gross_income.toFixed(2) %> &nbsp; &nbsp;
+    Pool Fee: ฿<%= @pool_fee.toFixed(2) %> &nbsp; &nbsp;
     Power Cost: ฿<%= @power_cost.toFixed(2) %>
-</div>
+</p>

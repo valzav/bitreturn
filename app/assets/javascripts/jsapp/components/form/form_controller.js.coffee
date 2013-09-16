@@ -15,6 +15,7 @@
 
     formSubmit: ->
       data = Backbone.Syphon.serialize @formLayout
+      console.log '-----> formSubmit', data, @formLayout
       @contentView.trigger("form:submit", data)
       @formLayout.trigger 'dialog:close'
       model = @contentView.model

@@ -3,10 +3,11 @@
 
 TODO:
 
-- display roi table (roi per asset)
+- make sure Initial Mining Date works
++ display roi table (roi per asset)
 + move content of DifModel to MarketEnv
 + remove DifModel model
-- add benchmark
+- add benchmark (later)
 + use RailsMoney instead of btc_price
 + add assets
 + add results

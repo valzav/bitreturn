@@ -42,9 +42,9 @@ class Asset < ActiveRecord::Base
       sum.expenses += r.expenses
       sum.net_income += r.net_income
       sum.asset_btc_price += r.asset_btc_price
-      r.cashflows.each {|d,v| cashflows[d] += v }
+      r.cashflows.each { |d, v| cashflows[d] += v }
     end
-    sum.cashflows = cashflows.sort{|e|e[0]}
+    sum.cashflows = cashflows.sort { |e| e[0] }
     if sum.asset_btc_price > 0.0
       sum.roi = (sum.net_income - sum.asset_btc_price) / sum.asset_btc_price
     else
@@ -60,8 +60,7 @@ class Asset < ActiveRecord::Base
     power_cost = 0.0
     cashflow = []
     blocks.each do |b|
-      logger.debug b.inspect
-      next if b.date < asset.effective_date
+      next if asset.effective_date.nil? or b.date < asset.effective_date
       break if b.date > end_date
       difficulty = b.difficulty || b.f_difficulty
       time_per_block = BitcoinDifficultyModel.calc_time_per_block(difficulty, asset.ghps)
@@ -74,15 +73,26 @@ class Asset < ActiveRecord::Base
       #puts "#{b[:date]} difficulty: #{b[:difficulty]} #{time_per_block} #{btc_per_24h}"
       #puts "btc_sum: #{btc_sum}, power_used: #{power_used}, pool_fee_btc: #{pool_fee_btc}"
     end
-    result = AnalysisResult.new(asset_id: asset.id, asset_name: asset.name)
-    result.power_cost = power_cost
-    result.pool_fee = pool_fee_btc
-    result.gross_income = btc_sum
-    result.expenses = result.power_cost - result.pool_fee
-    result.net_income = result.gross_income - result.expenses
-    result.roi = (result.net_income - asset.btc_price) / asset.btc_price
-    result.asset_btc_price = asset.btc_price
-    result.cashflows = cashflow
+    result = AnalysisResult.new(
+      asset_id: asset.id,
+      asset_name: asset.name,
+      power_cost: 0.0,
+      pool_fee: 0.0,
+      gross_income: 0.0,
+      expenses: 0.0,
+      net_income: 0.0,
+      roi: 0.0,
+      asset_btc_price: asset.btc_price,
+      cashflows: cashflow
+    )
+    if btc_sum > 0.0
+      result.power_cost = power_cost
+      result.pool_fee = pool_fee_btc
+      result.gross_income = btc_sum
+      result.expenses = result.power_cost - result.pool_fee
+      result.net_income = result.gross_income - result.expenses
+      result.roi = (result.net_income - asset.btc_price) / asset.btc_price
+    end
     return result
   end
 
@@ -94,7 +104,7 @@ class Asset < ActiveRecord::Base
     if asset.dividends_history.length < 5
       avg_dividends = asset.dividends_history.last[1]
     else
-      avg_dividends = asset.dividends_history[-5..-1].inject(0.0){|s,d| s += d[1]; s}/5.0
+      avg_dividends = asset.dividends_history[-5..-1].inject(0.0) { |s, d| s += d[1]; s }/5.0
     end
     puts "avg_dividend: #{avg_dividends}"
 

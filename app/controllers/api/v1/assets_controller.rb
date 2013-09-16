@@ -6,11 +6,17 @@ class Api::V1::AssetsController < ApplicationController
   end
 
   def create
+    if params[:asset][:effective_date] =~ /(\d\d)\/(\d\d)\/(\d\d\d\d)/
+      params[:asset][:effective_date] = Date.new($3.to_i, $1.to_i, $2.to_i)
+    end
     asset = Asset.create(params[:asset].merge(user: current_user))
     render json: asset, status: :ok, root: false
   end
 
   def update
+    if params[:asset][:effective_date] =~ /(\d\d)\/(\d\d)\/(\d\d\d\d)/
+      params[:asset][:effective_date] = Date.new($3.to_i, $1.to_i, $2.to_i)
+    end
     asset = current_user.assets.find(params[:id])
     asset.update_attributes(params[:asset])
     render json: asset, status: :ok, root: false

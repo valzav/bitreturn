@@ -10,7 +10,6 @@ class WelcomeController < ApplicationController
     market.forecast!
     results = []
     user.assets.each do |a|
-      a.effective_date = Date.today
       results << a.analyze(market.model.blocks, market, market.model.horizon_date)
     end
     sum = Asset.combine_results(results)
