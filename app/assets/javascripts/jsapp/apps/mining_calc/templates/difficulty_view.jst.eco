@@ -1,7 +1,6 @@
-<h4>Environment</h4>
 <div class="row">
 
-    <div class="span4">
+    <div class="span5">
         <table>
             <tr>
                 <td>Current Exchange Rate</td>
@@ -9,7 +8,7 @@
                 <td>$<%= @usd_btc_rate %></td>
             </tr>
             <tr>
-                <td>Current Speed (Th/s)</td>
+                <td>Current Network Speed (Th/s)</td>
                 <td>&nbsp;&nbsp;&nbsp;</td>
                 <td><%= @cur_speed %></td>
             </tr>
@@ -21,29 +20,29 @@
         </table>
     </div>
 
-    <div class="span3">
-    <label class="control-label" for="monthly_growth">Network speed growth</label>
-    <input class="attr" name="monthly_growth" id="monthly_growth" type="number"
-           value="<%= @monthly_growth %>" min="1" max="99" size="2" >  % / month
+    <div class="span4">
+        <label class="control-label" for="monthly_growth">Network Speed Growth</label>
+        <input class="attr" name="monthly_growth" id="monthly_growth" type="number"
+               value="<%= @monthly_growth %>" min="1" max="99" size="2"> % / month
     </div>
 
     <div class="span3">
-    <label class="control-label" for="monthly_growth">Investment horizon</label>
+        <label class="control-label" for="monthly_growth">Investment Horizon</label>
 
-    <select id="investment_horizon" class="select-block mbl" name="investment_horizon">
-        <% for i in [1..12]: %>
-        <option value="<%= i %>"
-        <%= if @investment_horizon == i then 'selected="true"' else '' %> >
-        <%= i %> <%= if i == 1 then 'Month' else 'Months' %>
-        </option>
-        <% end %>
-    </select>
-    </div>
-    <div class="span2">
-        &nbsp;
+        <select id="investment_horizon" class="select-block mbl" name="investment_horizon">
+            <% for i in [1..12]: %>
+            <option value="<%= i %>"
+            <%= if @investment_horizon == i then 'selected="true"' else '' %> >
+            <%= i %> <%= if i == 1 then 'Month' else 'Months' %>
+            </option>
+            <% end %>
+        </select>
     </div>
 </div>
 
 <div class="row">
-    <div class="span12" id="difficulty_chart" style="width: 900px; height: 400px;"></div>
+    <div class="span12 difficulty-chart">
+        <div id="difficulty_chart">
+        </div>
+    </div>
 </div>

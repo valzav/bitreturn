@@ -1,6 +1,6 @@
 class AnalysisResultSerializer < ActiveModel::Serializer
   attributes :id, :asset_id, :asset_name, :power_cost, :pool_fee, :gross_income,
-             :net_income, :roi, :expenses, :cashflows, :ars
+             :net_income, :roi, :expenses, :cashflows, :ars, :asset_btc_price
 
   def process_timeseries_array(array)
     return [] if array.nil?

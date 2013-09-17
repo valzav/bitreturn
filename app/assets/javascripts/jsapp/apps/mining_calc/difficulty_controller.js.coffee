@@ -9,7 +9,7 @@
   doPlot = (market) ->
     $.plot "#difficulty_chart", [
       data: market.get('data_hashes')
-      label: "Network Speed (Thash/s)"
+      label: "Network Speed (Th/s)"
       yaxis: 1
     ,
       data: market.get('data_difficulty')
@@ -17,7 +17,7 @@
       yaxis: 2
     ,
       data: market.get('data_f_hashes')
-      label: "Network Speed Forecast (Thash/s)"
+      label: "Network Speed Forecast (Th/s)"
       yaxis: 1
     ,
       data: market.get('data_f_difficulty')
