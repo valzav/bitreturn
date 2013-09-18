@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    @user = current_user || User.new
     @no_navbar_login_box = true
   end
 
@@ -24,13 +24,17 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @no_navbar_login_box = true
+    @user = current_user
   end
 
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
-      flash[:notice] = 'The settings were successfully updated'
-      redirect_back_or_default dashboard_path
+      #flash[:notice] = 'The settings were successfully updated'
+      redirect_to dashboard_path
+    #else
+    #  flash[:error] = @user.errors.full_messages.join('; ')
     end
   end
 

@@ -12,15 +12,15 @@
 #= require vendor/jquery.placeholder
 #= require vendor/jquery.stacktable
 #= require webapp/flatui-init
-#= require vendor/jquery.flot
-#= require vendor/jquery.flot.time
+# require vendor/jquery.flot
+# require vendor/jquery.flot.time
 
 #= require vendor/underscore
 #= require vendor/backbone
 #= require common/visitor_action
 #= require common/utils
 
-#= require ./dfgraph
+# require ./dfgraph
 
 (($) ->
   #$ ->

@@ -18,12 +18,24 @@
 //}
 
 // flat-ui overrides
-.navbar .nav > li > a {
-  padding: 15px 20px 13px 0;
+
+body {
+  padding-top: 50px;
 }
 
-.navbar .brand {
-  padding: 9px 28px 12px 32px;
+.brand {
+  font-family: 'Leckerli One', cursive;
+  padding: 9px 28px 12px 0 !important;
+  img {
+    position: relative;
+    top: -3px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.navbar .nav > li > a {
+  padding: 15px 20px 13px 0;
 }
 
 label.checkbox, .radio {

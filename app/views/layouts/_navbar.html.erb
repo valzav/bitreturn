@@ -1,29 +1,32 @@
-<div class="navbar">
+<div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
+      <a href="/" class="brand">BitReturn</a>
       <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="brand" href="/">BR</a>
       <div class="nav-collapse collapse pull-right">
         <ul class="nav">
-          <% if current_user %>
+          <% if current_user and !current_user.email.blank? %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="icon-user"></i>
                 <%= current_user.email %> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="/dashboard">Dashboard</a></li>
                 <li><a href="/logout">Logout</a></li>
               </ul>
             </li>
           <% else %>
             <% unless @no_navbar_login_box %>
-            <li><a data-track="sign in link" href="/login">Sign In</a></li>
-            <li><a data-track="sign in link" href="/users/new">Create Account</a></li>
+              <li><a data-track="sign in link" href="/login">Sign In</a></li>
+              <% if current_user %>
+                <li><a data-track="sign in link" href="<%= edit_user_path(current_user) %>">Create Account</a></li>
+              <% else %>
+                <li><a data-track="sign in link" href="/users/new">Create Account</a></li>
+              <% end %>
             <% end %>
           <% end %>
         </ul>

@@ -7,6 +7,10 @@
 */
 @import "bourbon";
 
+body {
+  padding-top: 60px;
+}
+
 @mixin border-radius($r) {
   @include prefixer(border-radius, $r, spec);
 }
