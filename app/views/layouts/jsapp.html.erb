@@ -25,7 +25,15 @@
   <%= include_gon %>
 </head>
 <body>
-<%= render :partial => 'layouts/navbar' %>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a href="/" class="brand">BitReturn</a>
+      <div id="user_login_corner_region" class="nav-collapse collapse pull-right">
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container">
   <div id="flash">
   <% [:notice, :error, :alert].each do |level| %>

@@ -3,7 +3,12 @@
 
 TODO:
 
-- make sure Initial Mining Date works
+- quantity
+- add more miners/correct miners info
+- show create account dialog after 4 minutes of innactivity
+- create account dialog should explain why account is needed
+- limit Name length to fit into one line
++ make sure Initial Mining Date works
 + display roi table (roi per asset)
 + move content of DifModel to MarketEnv
 + remove DifModel model

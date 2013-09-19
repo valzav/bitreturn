@@ -1,9 +1,14 @@
-class Api::V1::MinersController < ApplicationController
+module Api
+  module V1
 
-  def index
-    miners = Miner.all
-    render json: miners, status: :ok, root: false
+    class MinersController < ApiController
+
+      def index
+        miners = Miner.all
+        render json: miners, status: :ok, root: false
+      end
+
+    end
+
   end
-
-
 end

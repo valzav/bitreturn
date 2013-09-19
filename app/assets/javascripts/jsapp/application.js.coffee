@@ -3,9 +3,10 @@
   App = new Marionette.Application
 
   App.on "initialize:before", (options) ->
-    #window.user = App.request "set:current:user", options.user
+    App.request "set:current:user", options.user
 
   App.addRegions
+    userLoginCornerRegion: "#user_login_corner_region"
     difficultyRegion: "#difficulty_region"
     assetsRegion: "#assets_region"
     resultRegion: "#result_region"

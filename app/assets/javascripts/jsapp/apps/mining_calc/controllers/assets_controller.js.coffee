@@ -13,7 +13,6 @@
     showMinersRegion: (assets) ->
       view = new MiningCalcApp.AssetsListView collection: assets
       view.on "add_asset:button:clicked", =>
-        #assets.add(new App.Entities.Asset)
         App.vent.trigger "asset:edit:clicked"
 
       view.on "childview:asset:delete:clicked", (child, args) ->

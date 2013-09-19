@@ -3,8 +3,8 @@
 <td><%= @ghps %></td>
 <td><%= @power_use_watt %></td>
 <!--<td><%= @purchase_date %></td>-->
+<td><%= @quantity %></td>
 <td><%= @effective_date %></td>
-<!--<td><%= @quantity %></td>-->
 <td class="controls">
     <a href="#" class="edit" title="Edit Asset"><i class="icon-edit"></i></a>
     <a href="#" class="delete" title="Delete Asset"><i class="icon-remove"></i></a>

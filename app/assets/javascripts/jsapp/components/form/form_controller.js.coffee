@@ -15,10 +15,11 @@
 
     formSubmit: ->
       data = Backbone.Syphon.serialize @formLayout
-      console.log '-----> formSubmit', data, @formLayout
+      console.log '-----> form:submit', data, @formLayout
       @contentView.trigger("form:submit", data)
-      @formLayout.trigger 'dialog:close'
       model = @contentView.model
+      model?.on 'created updated', =>
+        @formLayout.trigger 'dialog:close'
       collection = @contentView.collection
       @processFormSubmit data, model, collection
 

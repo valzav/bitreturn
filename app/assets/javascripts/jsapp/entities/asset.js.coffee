@@ -5,6 +5,7 @@
 
   class Entities.Asset extends Entities.Model
     defaults:
+      quantity: 1
       purchase_date: $.datepicker.formatDate("mm/dd/yy", today)
       effective_date: $.datepicker.formatDate("mm/dd/yy", in_a_week)
     urlRoot: ->

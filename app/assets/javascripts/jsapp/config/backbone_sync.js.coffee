@@ -20,10 +20,10 @@ getValue = (object, prop) ->
 Backbone._sync = Backbone.sync
 Backbone.sync = (method, model, options) ->
   url = options.url || getValue(model, 'url')
-  if options.skip_access_token or !window.user
-    options.url = "/api/v1#{url}"
-  else
-    options.url = "/api/v1#{url}?user_credentials=#{window.user.get('single_access_token')}"
+  #if options.skip_access_token or !window.user
+  options.url = "/api/v1#{url}"
+  #else
+  #  options.url = "/api/v1#{url}?user_credentials=#{window.user.get('single_access_token')}"
   model_str = if method == 'read' then '-' else JSON.stringify(model)
   trackevent('sync', method, options.url, model_str)
   Backbone._sync(method, model, options)

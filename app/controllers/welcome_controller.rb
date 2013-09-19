@@ -13,6 +13,7 @@ class WelcomeController < ApplicationController
       results << a.analyze(market.model.blocks, market, market.model.horizon_date)
     end
     sum = Asset.combine_results(results)
+    #logger.debug sum.cashflows
     gon.user = user.serializer
     gon.miners = Miner.all.map { |m| m.serializer }
     gon.assets = user.assets.map { |a| a.serializer }

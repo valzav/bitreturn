@@ -39,12 +39,6 @@
                 </select>
             </div>
         </div>
-        <!--<div class="control-group">-->
-            <!--<label class="control-label" for="quantity">Quantity</label>-->
-            <!--<div class="controls">-->
-                <!--<input id="quantity" type="text" name="quantity" class="span1" value="<%#= @quantity %>">-->
-            <!--</div>-->
-        <!--</div>-->
         <div class="control-group">
             <label class="control-label" for="ghps">Hash Rate (Gh/s)</label>
             <div class="controls">
@@ -55,6 +49,12 @@
             <label class="control-label" for="power_use_watt">Power Use (Watt)</label>
             <div class="controls">
                 <input id="power_use_watt" type="text" name="power_use_watt" class="span1" value="<%= @power_use_watt %>">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="quantity">Quantity</label>
+            <div class="controls">
+                <input id="quantity" type="text" name="quantity" class="span1" value="<%= @quantity %>">
             </div>
         </div>
         <!--<div class="control-group">-->

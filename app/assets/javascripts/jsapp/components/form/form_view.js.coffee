@@ -35,6 +35,7 @@
         @buttonPlacement() if @buttons
 
     buttonPlacement: ->
+      console.log @ui.buttonContainer
       @ui.buttonContainer.addClass @buttons.placement
 
     focusFirstInput: ->
@@ -44,11 +45,12 @@
       if @model.isNew() then "new" else "edit"
 
     changeErrors: (model, errors, options) ->
+      console.log 'changeErrors', errors
       if @config.errors
         if _.isEmpty(errors) then @removeErrors() else @addErrors errors
 
     removeErrors: ->
-      @$(".error").removeClass("error").find("small").remove()
+      @$(".error").removeClass("error").find(".error-inline").remove()
 
     addErrors: (errors = {}) ->
       for name, array of errors
@@ -56,8 +58,9 @@
 
     addError: (name, error) ->
       el = @$("[name='#{name}']")
-      sm = $("<small>").text(error)
-      el.after(sm).closest(".row").addClass("error")
+      sm = $("<span>").text(error).addClass('help-inline').addClass('error-inline')
+      #el.after(sm).closest(".row").addClass("error")
+      el.after(sm).closest(".control-group").addClass("error")
 
     syncStart: (model) ->
       @addOpacityWrapper() if @config.syncing

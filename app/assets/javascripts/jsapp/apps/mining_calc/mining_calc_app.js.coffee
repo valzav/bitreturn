@@ -8,11 +8,14 @@
   API =
     index: ->
       console?.log '---> route API.index'
+      MiningCalcApp.UserController.showUserLoginCorner()
       MiningCalcApp.DifficultyController.show()
       MiningCalcApp.AssetsController.show()
       MiningCalcApp.ResultController.show(new App.Entities.AnalysisResult(gon.result))
     edit: (asset) ->
       MiningCalcApp.EditAssetController.edit asset
+    showCreateAccountDialog: (user) ->
+      MiningCalcApp.UserController.showCreateAccountDialog user
     refreshResult: ->
       result = new App.Entities.AnalysisResult()
       result.on 'created', (r) ->
@@ -33,12 +36,23 @@
   App.vent.on "asset:edit:clicked", (asset) ->
     API.edit(asset)
 
-  App.vent.on "asset:new:clicked", ->
-    API.edit(null)
-
   App.vent.on "market:changed", (market_env) ->
     API.refreshResult()
 
-  App.on "initialize:after", (options)->
-    #@navigate('new', trigger: true) if @getCurrentRoute() is ''
+  resetTimer = ->
+    clearTimeout(timeout) if window.timeout
+    window.timeout = setTimeout( ->
+      clearTimeout(timeout)
+      $(document).prop('onmousemove', null)
+      $(document).prop('onclick', null)
+      API.showCreateAccountDialog()
+    , 5*60*1000)
 
+  startTimer = ->
+    unless window.user.hasAccount()
+      document.onmousemove = resetTimer
+      document.onclick = resetTimer
+      resetTimer()
+
+  App.on "initialize:after", (options)->
+    startTimer()
