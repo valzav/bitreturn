@@ -1,8 +1,8 @@
 @BitReturn.module "MiningCalcApp", (MiningCalcApp, App, Backbone, Marionette, $, _) ->
   MiningCalcApp.UserController =
 
-    showCreateAccountDialog: (user) ->
-      user = App.request "current:user" unless user
+    showCreateAccountDialog: ->
+      user = App.request "current:user"
       editView = new MiningCalcApp.EditUserView model: user
       formView = App.request "form:wrapper", editView
       App.dialogRegion.show formView

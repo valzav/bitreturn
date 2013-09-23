@@ -7,7 +7,6 @@
 
   API =
     index: ->
-      console?.log '---> route API.index'
       MiningCalcApp.UserController.showUserLoginCorner()
       MiningCalcApp.DifficultyController.show()
       MiningCalcApp.AssetsController.show()
@@ -45,7 +44,8 @@
       clearTimeout(timeout)
       $(document).prop('onmousemove', null)
       $(document).prop('onclick', null)
-      API.showCreateAccountDialog()
+      assets = App.request "assets:entities"
+      API.showCreateAccountDialog() if assets.length > 1
     , 5*60*1000)
 
   startTimer = ->

@@ -25,7 +25,8 @@ class User < ActiveRecord::Base
                           currency: miner.currency,
                           price: miner.price,
                           ghps: miner.ghps,
-                          power_use_watt: miner.power_use_watt
+                          power_use_watt: miner.power_use_watt,
+
                         })
     self.market_env = MarketEnv.new(monthly_growth: 60, investment_horizon: 6)
   end

@@ -3,6 +3,9 @@
     <h3>New Account</h3>
 </div>
 <div class="modal-body">
+    <div class="alert alert-success">
+        We recommend you to create your BitReturn account so we could store the data you entered.
+    </div>
     <div class="form-horizontal">
         <div class="control-group">
             <label class="control-label" for="email">Email</label>
@@ -18,4 +21,3 @@
         </div>
     </div>
 </div>
-

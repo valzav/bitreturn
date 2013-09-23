@@ -35,7 +35,6 @@
         @buttonPlacement() if @buttons
 
     buttonPlacement: ->
-      console.log @ui.buttonContainer
       @ui.buttonContainer.addClass @buttons.placement
 
     focusFirstInput: ->
@@ -45,7 +44,6 @@
       if @model.isNew() then "new" else "edit"
 
     changeErrors: (model, errors, options) ->
-      console.log 'changeErrors', errors
       if @config.errors
         if _.isEmpty(errors) then @removeErrors() else @addErrors errors
 

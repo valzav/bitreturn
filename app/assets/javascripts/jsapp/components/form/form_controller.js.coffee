@@ -15,7 +15,6 @@
 
     formSubmit: ->
       data = Backbone.Syphon.serialize @formLayout
-      console.log '-----> form:submit', data, @formLayout
       @contentView.trigger("form:submit", data)
       model = @contentView.model
       model?.on 'created updated', =>

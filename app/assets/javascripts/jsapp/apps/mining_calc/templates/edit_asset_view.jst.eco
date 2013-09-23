@@ -13,7 +13,7 @@
             <label class="control-label" for="select_miner">Miner</label>
             <div class="controls">
                 <select id="select_miner" class="span4" name="select-miner">
-                    <option value="-1">Select your hardware</option>
+                    <option value="-1">Choose your hardware...</option>
                     <% for m in BitReturn.miners.models: %>
                     <option value="<%= m.id %>"
                     <%= if m.id == @assetable_id then 'selected="true"' else '' %> >
