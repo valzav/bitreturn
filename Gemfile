@@ -37,6 +37,4 @@ gem 'chartkick'
 
 gem 'holt_winters', git: 'https://github.com/cmdrkeene/holt_winters.git'
 gem 'tealeaves'
-#gem 'andand'
-gem 'sqlite3'
 gem 'bitcoin_difficulty_model'
