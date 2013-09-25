@@ -7,9 +7,9 @@ module ApplicationHelper
   def get_title
     prefix = Rails.env.development? ? '[DEV] ' : ''
     if @title
-      "#{prefix}#{@title} - BR"
+      "#{prefix}#{@title} - BitReturn"
     else
-      "#{prefix}BR"
+      "#{prefix}BitReturn"
     end
   end
 

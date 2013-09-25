@@ -6,10 +6,10 @@ module Api
 
       def create
         market = current_user.market_env
-        market.forecast!
+        res = market.forecast
         results = []
         current_user.assets.each do |a|
-          results << a.analyze(market.model.blocks, market, market.model.horizon_date)
+          results << a.analyze(res[:blocks], market, res[:horizon_date])
         end
         res = Asset.combine_results(results)
         if res.errors.empty?

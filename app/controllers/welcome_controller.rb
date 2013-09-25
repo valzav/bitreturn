@@ -1,5 +1,5 @@
-require Rails.root.join('lib/bitcoin_difficulty_model.rb').to_s
 require 'active_model_serializers'
+require 'bitcoin_difficulty_model'
 
 class WelcomeController < ApplicationController
   respond_to :html, :js
@@ -7,10 +7,10 @@ class WelcomeController < ApplicationController
   def index
     user = current_user || login_anonymous_user
     market =  user.market_env
-    market.forecast!
+    res = market.forecast
     results = []
     user.assets.each do |a|
-      results << a.analyze(market.model.blocks, market, market.model.horizon_date)
+      results << a.analyze(res[:blocks], market, res[:horizon_date])
     end
     sum = Asset.combine_results(results)
     #logger.debug sum.cashflows

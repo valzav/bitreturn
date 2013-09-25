@@ -47,6 +47,33 @@
   </div>
   <%= yield %>
 </div>
+  <footer class="bottom-menu bottom-menu-large bottom-menu-inverse">
+    <div class="container">
+      <div class="row">
+        <div class="span2">
+          <br/>
+          <br/>
+          <a href="/" class="brand">BitReturn</a>
+        </div>
+        <div class="span5">
+          <h6>If you have questions/suggestions/corrections don't hesitate to drop me a message</h6>
+          Email: <a href="email:vz@valzav.com">vz@valzav.com</a><br/>
+          Skype Id: <a href="skype:clinker?add">clinker</a><br/>
+          BitMessage: <a href="bitmessage:BM-Gu5j7es7jaDE3PH7Xxsu6kFzXRgZLXcn">BM-Gu5j7es7jaDE3PH7Xxsu6kFzXRgZLXcn</a><br/>
+          <br/>
+          <h6>If you are interested how BitReturn forecasts Bitcoin network difficulty, find model code on Github:</h6>
+          <b><a href="https://github.com/valzav/bitcoin_difficulty_model"><i class="icon-github icon-large"></i>
+            https://github.com/valzav/bitcoin_difficulty_model</a></b>
+        </div>
+        <div class="span5">
+          <h6>Please donate if you find this helpful</h6>
+          <a class="donate" href="bitcoin:1ChtD7WM7chBZvoZ5CzttPJ1GrC86bN4xT">1ChtD7WM7chBZvoZ5CzttPJ1GrC86bN4xT</a>
+          <%= image_tag('donate_qr.png', size: '125x125') %>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- /bottom-menu /large /inverse -->
 <%= javascript_tag do %>
   $(function() {
     BitReturn.start({user: gon.user});

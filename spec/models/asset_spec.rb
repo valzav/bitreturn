@@ -1,8 +1,6 @@
 require 'spec_helper'
 require 'ostruct'
 
-require Rails.root.join('lib/bitcoin_difficulty_model.rb').to_s
-
 describe Asset do
 
   let(:miner1) do
@@ -56,9 +54,8 @@ describe Asset do
     blocks = load_yaml('blocks_forecast.yml').map { |b| OpenStruct.new(b) }
     m = miner1
     result1 = m.analyze(blocks, market_env, end_date)
-    m.price *= 10
+    m.quantity = 10
     result2 = m.analyze(blocks, market_env, end_date)
-
     #result.power_cost.should be_within(0.01).of(0.34)
     #result.pool_fee.should be_within(0.01).of(0.13)
     result1.gross_income.should be_within(0.001).of(result2.gross_income/10.0)

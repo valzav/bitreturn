@@ -7,8 +7,8 @@ root = File.expand_path(File.dirname(__FILE__))
 root = File.dirname(root) until File.exists?(File.join(root, 'config'))
 Dir.chdir(root)
 
+require 'bitcoin_difficulty_model'
 require File.join(root, "config", "environment")
-require Rails.root.join('lib/bitcoin_blocks_importer.rb').to_s
 
 $running = true
 Signal.trap("TERM") do
@@ -22,12 +22,17 @@ end
 Rails.logger = ActiveSupport::BufferedLogger.new(File.join(root, 'log/updater.log'))
 Rails.logger.info "\n#{dt} === updater started ==="
 
-importer = BitcoinBlocksImporter.new('http://blockexplorer.com/q/nethash')
-
 while $running do
   begin
     Rails.logger.info "#{dt} -------------------"
-    counter = importer.perform
+    last_block = Bitcoin::Block.last
+    last_block_number = last_block ? last_block.block_number : 0
+    import = BitcoinDifficultyModel::BlocksImport.new('http://blockexplorer.com/q/nethash', last_block_number)
+    counter = 0
+    import.each_block do |b|
+      Bitcoin::Block.create!(block_number: b.number, block_date: b.date, block_time: b.time, difficulty: b.difficulty, ghps: b.ghps)
+      counter += 1
+    end
     Rails.logger.info "#{dt} new blocks: #{counter}"
     puts "new blocks imported: #{counter}"
     sleep(600)

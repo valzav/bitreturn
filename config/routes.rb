@@ -4,6 +4,7 @@ Monetizer::Application.routes.draw do
 
   match '/logout' => 'user_sessions#destroy', :as => :logout
   match '/login' => 'user_sessions#new', :as => :login
+  match '/recover_password' => 'welcome#recover_password', :as => :recover_password
   match '/' => 'welcome#index', :as => :dashboard
 
   resource :user_session

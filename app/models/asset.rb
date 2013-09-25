@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'json'
+require 'bitcoin_difficulty_model'
 
 class Asset < ActiveRecord::Base
   belongs_to :user
@@ -63,7 +64,7 @@ class Asset < ActiveRecord::Base
       result.gross_income = btc_sum
       result.expenses = result.power_cost - result.pool_fee
       result.net_income = result.gross_income - result.expenses
-      result.roi = (result.net_income - asset.btc_price) / asset_btc_price
+      result.roi = (result.net_income - asset_btc_price) / asset_btc_price
     end
     return result
   end
