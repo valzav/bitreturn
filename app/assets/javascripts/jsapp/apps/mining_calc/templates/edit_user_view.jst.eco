@@ -1,10 +1,10 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3>New Account</h3>
+    <h3>Create an account now</h3>
 </div>
 <div class="modal-body">
     <div class="alert alert-success">
-        We recommend you to create your BitReturn account so we could store the data you entered.
+        <strong>Why create an account?</strong><br/>It will guaranty that the data you entered is not lost when you return next time.
     </div>
     <div class="form-horizontal">
         <div class="control-group">

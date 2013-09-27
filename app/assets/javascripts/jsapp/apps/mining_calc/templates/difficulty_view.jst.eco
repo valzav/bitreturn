@@ -24,7 +24,7 @@
     <div class="span4">
         <label class="control-label" for="monthly_growth">Network Speed Growth</label>
         <input class="attr" name="monthly_growth" id="monthly_growth" type="number"
-               value="<%= @monthly_growth %>" min="1" max="99" size="2"> % / month
+               value="<%= @monthly_growth %>" min="1" max="300" size="2"> % / month
     </div>
 
     <div class="span3">

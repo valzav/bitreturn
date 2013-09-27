@@ -12,7 +12,7 @@
     monthly_growth_changed: (e) ->
       target = $(e.target)
       value = target.val()
-      @model.set('monthly_growth', value) if(value > 0 and value < 100)
+      @model.set('monthly_growth', value) if(value > 0 and value < 300)
 
     investment_horizon_changed: (e) ->
       target = $(e.target)

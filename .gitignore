@@ -16,6 +16,8 @@
 
 .idea
 .rvmrc
+.ruby-version
+.ruby-gemset
 public/system
 public/assets
 public/test
