@@ -57,7 +57,6 @@
     addError: (name, error) ->
       el = @$("[name='#{name}']")
       sm = $("<span>").text(error).addClass('help-inline').addClass('error-inline')
-      #el.after(sm).closest(".row").addClass("error")
       el.after(sm).closest(".control-group").addClass("error")
 
     syncStart: (model) ->

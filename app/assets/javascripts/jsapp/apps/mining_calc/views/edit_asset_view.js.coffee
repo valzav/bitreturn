@@ -4,8 +4,8 @@
     template: "mining_calc/templates/edit_asset_view"
     events:
       'change #select_miner' : 'minerSelected'
-    modelEvents:
-      'change' : 'render'
+    #modelEvents:
+      #'change' : 'render'
     form:
       buttons:
         primary: 'Update Asset'

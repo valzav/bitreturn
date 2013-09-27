@@ -9,6 +9,9 @@
       'mouseup #monthly_growth': 'monthly_growth_changed'
       'change #investment_horizon': 'investment_horizon_changed'
 
+    onRender: ->
+      @$('#growth_rate_tooltip_goggle').tooltip(placement: 'right')
+
     monthly_growth_changed: (e) ->
       target = $(e.target)
       value = target.val()
