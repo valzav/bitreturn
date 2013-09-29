@@ -8,6 +8,12 @@ class Asset < ActiveRecord::Base
   has_one :analysis_result
   attr_accessible :name, :assetable, :quantity, :purchase_date, :effective_date
   attr_accessible :user, :currency, :price, :ghps, :power_use_watt
+  validates :price, presence: true, format: {with: /\A\d+(\.\d{1,2})?\z/,  message: "not valid price format"}
+  validates :quantity, presence: true, numericality: {only_integer: true}
+  validates :name, presence: true
+  validates :ghps, presence: true, numericality: {only_integer: true}
+  validates :power_use_watt, presence: true, numericality: {only_integer: true}
+  validates :effective_date, presence: true
 
   monetize :price_cents
 
