@@ -22,3 +22,4 @@
       miner = miners.get(e.target.value)
       return unless miner
       @model.populateFromMiner(miner)
+      @render()
