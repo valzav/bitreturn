@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
                           price: miner.price,
                           ghps: miner.ghps,
                           power_use_watt: miner.power_use_watt,
-                          effective_date: Time.now + (7*24*60*60)
+                          effective_date: (Time.now + (7*24*60*60)).to_date
                         })
     self.market_env = MarketEnv.new(monthly_growth: 80, investment_horizon: 6)
   end
