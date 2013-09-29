@@ -5,7 +5,23 @@ class WelcomeController < ApplicationController
   respond_to :html, :js
 
   def index
-    user = current_user || login_anonymous_user
+    user = current_user
+    unless user
+      user = login_anonymous_user
+      miner = Miner.where(name: 'ASICMiner Block Erupter USB').first
+      asset_attrs = {
+        name: miner.name,
+        assetable: miner,
+        quantity: 10,
+        currency: miner.currency,
+        price: miner.price,
+        ghps: miner.ghps,
+        power_use_watt: miner.power_use_watt,
+        effective_date: (Time.now + (7*24*60*60)).to_date
+      }
+      user.assets.create!(asset_attrs)
+      user.market_env = MarketEnv.new(monthly_growth: 80, investment_horizon: 6)
+    end
     market =  user.market_env
     res = market.forecast
     results = []
