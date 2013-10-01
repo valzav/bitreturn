@@ -16,8 +16,9 @@
   margin-bottom: 15px;
 }
 
-.navbar {
-  border-bottom: 1px solid #808080;
+.navbar, .navbar-inner {
+  //border-bottom: 1px solid #fff;
+  //background-color: #BDC3C7;
 }
 
 #monthly_growth {
@@ -29,7 +30,7 @@
 }
 
 .difficulty-chart {
-  background-color: #ECEEF0;
+  background-color: #F9FAFB;
 }
 
 #difficulty_chart {
@@ -73,11 +74,19 @@ p.result-summary {
 }
 
 .current-result {
-  background-color: #ECEEF0;
+  background-color: #F9FAFB;
   margin-left: 16px;
   padding: 16px 0 16px 16px;
 }
 
 #result_chart {
   width: 572px; height: 340px;
+}
+
+.donate-img {
+  height: 125px;
+  width: 125px;
+  position: relative;
+  left: -3px;
+  top: 3px;
 }
