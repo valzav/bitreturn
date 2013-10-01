@@ -29,13 +29,16 @@ class UsersController < ApplicationController
   end
 
   def update
+    if !params[:user][:password].blank? and params[:user][:password_confirmation].blank?
+      params[:user][:password_confirmation] = params[:user][:password]
+    end
     @user = current_user
     if @user.update_attributes(params[:user])
       #flash[:notice] = 'The settings were successfully updated'
-      redirect_to dashboard_path
-    #else
-    #  flash[:error] = @user.errors.full_messages.join('; ')
+    else
+      flash[:error] = @user.errors.full_messages.join('; ')
     end
+    redirect_to dashboard_path
   end
 
   def destroy

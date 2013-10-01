@@ -7,7 +7,7 @@ class MinerSerializer < ActiveModel::Serializer
   end
 
   def price_display
-    humanized_money_with_symbol(object.price).sub(/0+$/, '')
+    humanized_money_with_symbol(object.price).sub(/(\.\d{2,2}?)0+/, '\1')
   end
 
 
