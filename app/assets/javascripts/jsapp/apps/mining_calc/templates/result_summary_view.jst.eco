@@ -1,7 +1,7 @@
 <table class="result-summary">
     <tr>
         <td>Gross Income: ฿<%= @gross_income.toFixed(2) %></td>
-        <td>Pool Fee: ฿<%= @pool_fee.toFixed(2) %></td>
-        <td class="power-cost">Power Cost: ฿<%= @power_cost.toFixed(2) %> (15&cent; per kWh)</td>
+        <td>Pool Fee: ฿<%= @pool_fee.toFixed(2) %> <span class="muted">(2%)</span></td>
+        <td class="power-cost">Power Cost: ฿<%= @power_cost.toFixed(2) %> <span class="muted">(15&cent;/kWh)</span></td>
     </tr>
 </table>

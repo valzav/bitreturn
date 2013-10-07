@@ -6,10 +6,14 @@
 *= require vendor/flat-ui
 *= require common
 */
-@import "bourbon";
+//@import "bourbon";
+//
+//@mixin border-radius($r) {
+//  @include prefixer(border-radius, $r, spec);
+//}
 
-@mixin border-radius($r) {
-  @include prefixer(border-radius, $r, spec);
+.muted {
+  color: #a0a0a0;
 }
 
 .form-horizontal .control-group {

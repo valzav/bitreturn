@@ -21,10 +21,9 @@ class Asset < ActiveRecord::Base
     self.active_model_serializer.new(self, root: false)
   end
 
-  def btc_price
+  def btc_price(usd_btc_rate)
     return price.to_f if currency == 'BTC'
-    @btc_ticker ||= MarketEnv.get_usd_btc_rate
-    return price.to_f / @btc_ticker
+    return price.to_f / usd_btc_rate
   end
 
   def analyze(blocks, market_env, end_date)
@@ -37,7 +36,7 @@ class Asset < ActiveRecord::Base
     power_cost = 0.0
     cashflow = []
     quantity = asset.quantity.blank? ? 1.0 : asset.quantity.to_f
-    asset_btc_price = asset.btc_price * quantity
+    asset_btc_price = asset.btc_price(market_env.usd_btc_rate) * quantity
     blocks.each do |b|
       next if asset.effective_date.nil? or b.date < asset.effective_date
       break if b.date > end_date
