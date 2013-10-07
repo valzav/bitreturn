@@ -23,7 +23,7 @@ class MarketEnv < ActiveRecord::Base
 
   def initialize(attributes = nil, options = {})
     super
-    self.usd_btc_rate = MarketEnv.get_usd_btc_rate unless attributes[:usd_btc_rate]
+    self.usd_btc_rate = MarketEnv.get_usd_btc_rate #unless attributes[:usd_btc_rate]
     self.power_cost = 0.15 / self.usd_btc_rate unless attributes[:power_cost]
     self.pool_fee = 0.02 unless attributes[:pool_fee]
   end

@@ -24,8 +24,8 @@
     <div class="span4">
         <label class="control-label">Network Speed Growth
             <a href="#" id="growth_rate_tooltip_goggle"
-               title="Network Speed Growth Rate is an input parameter that is set on a monthly basis, cash flows are calculated on a day by day
-            basis, so all the difficulty jumps during a month will be taken into account.">
+               title="Network Speed Growth Rate is an input parameter defined on a monthly basis, cash flows are calculated on a day by day
+            basis, so all the difficulty jumps during a month are taken into account.">
                 <i class="icon-info-sign"></i></a></label>
 
         <input class="attr input-mini" name="monthly_growth" id="monthly_growth" type="number"

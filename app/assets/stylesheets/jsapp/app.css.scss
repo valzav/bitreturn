@@ -68,9 +68,12 @@ table.assets-results {
   }
 }
 
-p.result-summary {
+table.result-summary {
   font-size: 96%;
   margin: 0 0 5px 20px;
+  width: 100%;
+  td {width: 30%;}
+  td.power-cost { width: 40%; }
 }
 
 .current-result {
