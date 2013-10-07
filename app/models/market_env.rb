@@ -30,6 +30,7 @@ class MarketEnv < ActiveRecord::Base
 
   def usd_btc_rate
     @usd_btc_rate ||= MarketEnv.get_usd_btc_rate
+    @usd_btc_rate.to_f
   end
 
   def forecast
