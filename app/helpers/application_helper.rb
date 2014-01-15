@@ -35,7 +35,7 @@ module ApplicationHelper
   def mf(amount,precision=4)
     af = amount.to_f
     return '0.0' if af == 0.0
-    ("%.#{precision}f" % amount.to_f).sub(/0+$/, '')
+    ("%.#{precision}f" % amount.to_f).sub(/(\.\d{2,2}?)0+/, '\1')
   end
 
   def show_page(url, title)
