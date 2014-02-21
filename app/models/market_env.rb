@@ -8,7 +8,7 @@ class MarketEnv < ActiveRecord::Base
   attr_reader :data_hashes, :data_difficulty, :data_f_hashes, :data_f_difficulty
 
   def self.get_usd_btc_rate
-    ticker_url = 'http://data.mtgox.com/api/1/BTCUSD/ticker_fast'
+    ticker_url = 'https://api.bitcoinaverage.com/ticker/global/USD/last'
     unless @curl
       @curl = Curl::Easy.new
       @curl.follow_location = true
@@ -17,8 +17,9 @@ class MarketEnv < ActiveRecord::Base
     end
     @curl.url = ticker_url
     @curl.perform
-    json = JSON.parse(@curl.body_str)
-    return json['return']['last_local']['value'].to_f
+    #json = JSON.parse(@curl.body_str)
+    #return json['return']['last_local']['value'].to_f
+    return @curl.body_str.to_f
   end
 
   def initialize(attributes = nil, options = {})
